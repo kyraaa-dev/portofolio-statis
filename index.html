@@ -667,6 +667,114 @@
         .code-snippet span.property { color: #e5c07b; }
 
         /* Projects */
+        /* Timeline */
+        .experience { padding-top: 120px; padding-bottom: 120px; }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 2px;
+            background: var(--border-color);
+            transition: background-color 0.5s ease;
+        }
+        @media (min-width: 768px) {
+            .timeline::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 48px;
+            width: 100%;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 20px;
+            top: 16px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-base);
+            border: 2px solid var(--accent-color);
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(0, 255, 249, 0.5);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            background: var(--accent-color);
+            box-shadow: 0 0 20px rgba(0, 255, 249, 0.8);
+            transform: translateX(-50%) scale(1.2);
+        }
+        @media (min-width: 768px) {
+            .timeline-dot {
+                left: 50%;
+            }
+        }
+        .timeline-content {
+            margin-left: 50px;
+            padding: 24px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        [data-theme="dark"] .timeline-item:hover .timeline-content {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        @media (min-width: 768px) {
+            .timeline-content {
+                width: 45%;
+                margin-left: 0;
+            }
+            .timeline-item:nth-child(odd) .timeline-content {
+                margin-left: auto;
+            }
+            .timeline-item:nth-child(even) .timeline-content {
+                text-align: right;
+            }
+        }
+        .timeline-date {
+            font-size: 14px;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .timeline-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .timeline-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
         .projects { padding-top: 120px; padding-bottom: 120px; }
         .section-header { margin-bottom: 64px; }
         .section-title { font-size: 36px; font-weight: 700; margin-bottom: 16px; letter-spacing: -1px; }
@@ -1069,6 +1177,51 @@
             <h3>GitHub Activity</h3>
             <div class="heatmap-container">
                 <img src="https://ghchart.rshah.org/kyraaa-dev" alt="Angga Wiranata Github Chart" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section id="experience" class="experience container reveal">
+        <div class="section-header reveal">
+            <h2 class="section-title">My <span class="highlight">Journey</span></h2>
+            <p class="section-description">Pengalaman Karir & Pendidikan</p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            
+            <!-- Item 1: 2022 - Sekarang -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">2022 - Sekarang</span>
+                    <h3 class="timeline-title">Freelance Web Developer</h3>
+                    <h4 class="timeline-subtitle">Self-Employed / Freelance</h4>
+                    <p class="timeline-desc">Mengembangkan berbagai aplikasi web modern menggunakan teknologi terkini seperti Laravel dan ekosistem JS.</p>
+                </div>
+            </div>
+            
+            <!-- Item 2: 2022 -->
+            <div class="timeline-item reveal delay-1">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">2022</span>
+                    <h3 class="timeline-title">Pengadministrasian Umum</h3>
+                    <h4 class="timeline-subtitle">Dewan Pengurus KORPRI Kab. Banjar</h4>
+                    <p class="timeline-desc">Menangani administrasi umum, pengelolaan data, dan mendukung operasional instansi pemerintahan daerah.</p>
+                </div>
+            </div>
+            
+            <!-- Item 3: 2016 - 2020 -->
+            <div class="timeline-item reveal delay-2">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">2016 - 2020</span>
+                    <h3 class="timeline-title">S1 Teknik Informatika</h3>
+                    <h4 class="timeline-subtitle">Universitas Islam Kalimantan MAB</h4>
+                    <p class="timeline-desc">Lulus program studi Teknik Informatika dengan fokus pada rekayasa perangkat lunak dan sistem informasi.</p>
+                </div>
             </div>
         </div>
     </section>
