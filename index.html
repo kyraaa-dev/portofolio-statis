@@ -1228,8 +1228,20 @@
         </div>
         
         <div class="orbit-container">
-            <!-- Central Avatar -->
-            <div class="orbit-center">AW</div>
+            <!-- Central Core (Cooler) -->
+            <div class="orbit-center" style="box-shadow: 0 0 50px rgba(0, 255, 249, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.4); animation: core-pulse 2s infinite alternate; overflow: visible;">
+                <style>
+                    @keyframes core-pulse {
+                        0% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 255, 249, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.3); }
+                        100% { transform: scale(1.05); box-shadow: 0 0 70px rgba(0, 255, 249, 0.8), inset 0 0 25px rgba(255, 255, 255, 0.5); }
+                    }
+                </style>
+                <!-- Glowing Code Symbol SVG -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+            </div>
             
             <!-- Ring 1 (Inner) -->
             <div class="orbit-ring orbit-ring-1">
