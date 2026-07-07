@@ -1112,7 +1112,24 @@
         </div>
     </header>
 
+    <style>
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero { position: relative; }
+        .hero-title, .hero-badge, .hero-description, .hero-buttons, .digital-id-perspective {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
     <section class="hero container">
+        <div id="particles-js"></div>
         <h1 class="hero-title reveal active delay-1">ANGGA<br>WIRANATA</h1>
         <div class="hero-badge reveal active delay-1">WEB DEVELOPER</div>
         <p class="hero-description reveal active delay-2">
@@ -1795,6 +1812,51 @@
         }
 
         requestAnimationFrame(raf)
+    </script>
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#10b981" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.5, "random": false },
+                    "size": { "value": 2.5, "random": true },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#10b981",
+                        "opacity": 0.3,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1.5,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "window",
+                    "events": {
+                        "onhover": { "enable": true, "mode": "grab" },
+                        "onclick": { "enable": true, "mode": "push" },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": { "distance": 200, "line_linked": { "opacity": 0.8 } },
+                        "push": { "particles_nb": 3 }
+                    }
+                },
+                "retina_detect": true
+            });
+        }
     </script>
 </body>
 </html>
