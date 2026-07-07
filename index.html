@@ -620,6 +620,83 @@
         .marquee-content span[data-skill="php"]:hover { color: #777BB4; text-shadow: 0 0 15px rgba(119,123,180,0.6); }
         .marquee-content span[data-skill="tailwindcss"]:hover { color: #06B6D4; text-shadow: 0 0 15px rgba(6,182,212,0.6); }
 
+        /* Orbit Ecosystem */
+        .orbit-section {
+            padding: 80px 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .orbit-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+        }
+        .orbit-center {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--bg-base);
+            box-shadow: 0 0 40px rgba(0, 255, 249, 0.4);
+            z-index: 10;
+        }
+        .orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: orbit-spin linear infinite;
+        }
+        [data-theme="light"] .orbit-ring {
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+        .orbit-ring-1 { width: 220px; height: 220px; animation-duration: 15s; }
+        .orbit-ring-2 { width: 340px; height: 340px; animation-duration: 25s; animation-direction: reverse; }
+        .orbit-ring-3 { width: 460px; height: 460px; animation-duration: 35s; }
+        
+        .orbit-item {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 50%; left: 50%;
+            transform-origin: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .orbit-item.rev {
+            /* Reverse the rotation so text/logo stays upright */
+            animation: orbit-spin-rev linear infinite;
+        }
+        .orbit-ring-1 .orbit-item.rev { animation-duration: 15s; }
+        .orbit-ring-2 .orbit-item.rev { animation-duration: 25s; animation-direction: reverse; }
+        .orbit-ring-3 .orbit-item.rev { animation-duration: 35s; }
+
+        @keyframes orbit-spin {
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes orbit-spin-rev {
+            100% { transform: rotate(-360deg); }
+        }
+
         /* Project Modal */
         .project-modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -1142,6 +1219,63 @@
                             </div>
         </div>
     </div>
+
+    <!-- Tech Stack Orbit Section -->
+    <section class="orbit-section container reveal delay-2">
+        <div class="section-header reveal">
+            <h2 class="section-title">Tech <span class="highlight">Ecosystem</span></h2>
+            <p class="section-description">Teknologi yang berputar dan mendukung setiap project saya.</p>
+        </div>
+        
+        <div class="orbit-container">
+            <!-- Central Avatar -->
+            <div class="orbit-center">AW</div>
+            
+            <!-- Ring 1 (Inner) -->
+            <div class="orbit-ring orbit-ring-1">
+                <div class="orbit-item rev" style="top: -22px; left: calc(50% - 22px);">
+                    <!-- Laravel -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF2D20" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                </div>
+                <div class="orbit-item rev" style="top: auto; bottom: -22px; left: calc(50% - 22px);">
+                    <!-- React -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </div>
+            </div>
+            
+            <!-- Ring 2 (Middle) -->
+            <div class="orbit-ring orbit-ring-2">
+                <div class="orbit-item rev" style="top: calc(50% - 22px); left: -22px;">
+                    <!-- Database -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4479A1" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </div>
+                <div class="orbit-item rev" style="top: calc(50% - 22px); right: -22px; left: auto;">
+                    <!-- Code -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3178C6" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <div class="orbit-item rev" style="top: 15px; left: 50px;">
+                    <!-- Design/Figma -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F24E1E" stroke-width="2"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
+                </div>
+            </div>
+            
+            <!-- Ring 3 (Outer) -->
+            <div class="orbit-ring orbit-ring-3">
+                <div class="orbit-item rev" style="top: -22px; left: calc(50% - 22px);">
+                    <!-- Tailwind/CSS -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2"><path d="M12 2.69l5.66 4.2c.2.15.34.38.34.64v8.94c0 .26-.14.49-.34.64L12 21.31l-5.66-4.2a.8.8 0 0 1-.34-.64V7.53c0-.26.14-.49.34-.64L12 2.69z"></path></svg>
+                </div>
+                <div class="orbit-item rev" style="top: auto; bottom: 35px; left: 45px;">
+                    <!-- PHP -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#777BB4" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon></svg>
+                </div>
+                <div class="orbit-item rev" style="top: auto; bottom: 35px; right: 45px; left: auto;">
+                    <!-- JS/Terminal -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F7DF1E" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="about container reveal">
