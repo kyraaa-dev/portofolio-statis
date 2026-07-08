@@ -193,21 +193,19 @@
             overflow: hidden;
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .shard {
+        #matrixCanvas {
             position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #050505; z-index: 1; pointer-events: all;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            display: block; z-index: 1; background: #000;
         }
-        /* Geometric Slices */
-        .shard-1 { clip-path: polygon(0 0, 25% 0, 15% 100%, 0 100%); }
-        .shard-2 { clip-path: polygon(25% 0, 50% 0, 40% 100%, 15% 100%); background: #080808; }
-        .shard-3 { clip-path: polygon(50% 0, 75% 0, 65% 100%, 40% 100%); }
-        .shard-4 { clip-path: polygon(75% 0, 100% 0, 100% 100%, 65% 100%); background: #080808; }
-
-        .preloader.slide-up .shard-1 { transform: translateY(-100vh) translateX(-10vw); }
-        .preloader.slide-up .shard-2 { transform: translateY(100vh) translateX(10vw); }
-        .preloader.slide-up .shard-3 { transform: translateY(-100vh) translateX(10vw); }
-        .preloader.slide-up .shard-4 { transform: translateY(100vh) translateX(-10vw); }
+        .preloader.slide-up {
+            transform: translateY(-100vh);
+        }
+        .preloader::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #fff; z-index: 100; opacity: 0; pointer-events: none;
+            transition: opacity 0.2s ease-out;
+        }
+        .preloader.overload::after { opacity: 1; }
 
         .preloader-percentage-new {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -409,10 +407,7 @@
         }
         
         /* Light Mode Overrides for Preloader */
-        [data-theme="light"] .shard { background: #f9fafb; }
-        [data-theme="light"] .shard-2, [data-theme="light"] .shard-4 { background: #f3f4f6; }
-        [data-theme="light"] .preloader-percentage-new { -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2); }
-        [data-theme="light"] .preloader-percentage-new::before { color: #000; }
+
 
         /* Stats */
         .stats { 
@@ -933,12 +928,9 @@
     </script>
 </head>
 <body>
-    <!-- Geometric Shards Preloader -->
+    <!-- The Matrix Code Rain Preloader -->
     <div class="preloader" id="preloader">
-        <div class="shard shard-1"></div>
-        <div class="shard shard-2"></div>
-        <div class="shard shard-3"></div>
-        <div class="shard shard-4"></div>
+        <canvas id="matrixCanvas"></canvas>
         <div class="preloader-percentage-new" id="preloaderPerc" data-text="0%">0%</div>
     </div>
 
@@ -1373,13 +1365,55 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Cinematic Preloader Logic
+            // Matrix Preloader Logic
             const preloader = document.getElementById('preloader');
             const preloaderPerc = document.getElementById('preloaderPerc');
+            const canvas = document.getElementById('matrixCanvas');
             
-            if (preloader) {
+            if (preloader && canvas) {
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
+                const fontSize = 14;
+                const columns = canvas.width / fontSize;
+                const drops = Array.from({length: columns}).fill(1);
+                
+                let isOverloaded = false;
+                
+                function drawMatrix() {
+                    if (isOverloaded) {
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                    } else {
+                        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    }
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.fillStyle = isOverloaded ? '#fff' : '#10b981'; // Emerald Green
+                    ctx.font = fontSize + 'px monospace';
+                    
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                        
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                    if (!preloader.classList.contains('slide-up') || isOverloaded) {
+                        requestAnimationFrame(drawMatrix);
+                    }
+                }
+                drawMatrix();
+                
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+
                 let progress = 0;
-                // Allow CSS animations to play for a bit before starting the fast loader
                 setTimeout(() => {
                     const interval = setInterval(() => {
                         progress += Math.floor(Math.random() * 5) + 2; 
@@ -1387,6 +1421,9 @@
                         if (progress >= 100) {
                             progress = 100;
                             clearInterval(interval);
+                            
+                            isOverloaded = true;
+                            preloader.classList.add('overload');
                             
                             setTimeout(() => {
                                 preloader.classList.add('slide-up');
@@ -1396,7 +1433,7 @@
                                         setTimeout(() => { el.classList.add('active'); }, index * 100);
                                     });
                                 }, 1200); // Wait for slide-up transition
-                            }, 400); // Hold at 100% for a moment
+                            }, 500); // Flash duration
                         }
                         if(preloaderPerc) {
                             preloaderPerc.innerText = progress + '%';
@@ -1404,7 +1441,7 @@
                             preloaderPerc.style.setProperty('--progress', progress + '%');
                         }
                     }, 40);
-                }, 1000); // Wait for name to slide up
+                }, 500);
             }
 
             // Global Mouse Tracker for Grid Background
