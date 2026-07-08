@@ -2287,6 +2287,48 @@
                 // Also trigger voice intro language change if it exists
                 const voiceLangBtn = document.querySelector(`.voice-lang-btn[data-lang="${currentLang}"]`);
                 if (voiceLangBtn) voiceLangBtn.click();
+                // Show notification toast
+                let toast = document.getElementById('langToast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.id = 'langToast';
+                    Object.assign(toast.style, {
+                        position: 'fixed',
+                        bottom: '30px',
+                        left: '50%',
+                        transform: 'translateX(-50%) translateY(20px)',
+                        background: 'rgba(15, 23, 42, 0.9)',
+                        color: '#fff',
+                        padding: '12px 24px',
+                        borderRadius: '30px',
+                        fontSize: '14px',
+                        fontWeight: '600',
+                        fontFamily: "'Inter', sans-serif",
+                        boxShadow: '0 10px 25px rgba(0,0,0,0.5), 0 0 15px rgba(16, 185, 129, 0.2)',
+                        border: '1px solid rgba(16, 185, 129, 0.3)',
+                        backdropFilter: 'blur(12px)',
+                        opacity: '0',
+                        transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                        zIndex: '9999',
+                        pointerEvents: 'none'
+                    });
+                    document.body.appendChild(toast);
+                }
+                
+                toast.innerHTML = currentLang === 'en' 
+                    ? '<span style="margin-right: 8px;">🇬🇧</span> Language switched to English' 
+                    : '<span style="margin-right: 8px;">🇮🇩</span> Bahasa diubah ke Indonesia';
+                
+                requestAnimationFrame(() => {
+                    toast.style.opacity = '1';
+                    toast.style.transform = 'translateX(-50%) translateY(0)';
+                });
+                
+                if(toast.hideTimeout) clearTimeout(toast.hideTimeout);
+                toast.hideTimeout = setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(-50%) translateY(20px)';
+                }, 3000);
             });
         }
 
