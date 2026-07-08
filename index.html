@@ -193,131 +193,37 @@
             overflow: hidden;
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .preloader-background {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 15% 50%, rgba(0, 255, 249, 0.15), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(255, 0, 193, 0.15), transparent 25%),
-                #050505;
-            z-index: 1;
-            overflow: hidden;
+        .shard {
+            position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #050505; z-index: 1; pointer-events: all;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .preloader-background::after {
-            content: '';
-            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(600px) rotateX(60deg) translateY(0);
-            animation: gridMove 5s linear infinite;
-        }
-        @keyframes gridMove {
-            0% { transform: perspective(600px) rotateX(60deg) translateY(0); }
-            100% { transform: perspective(600px) rotateX(60deg) translateY(50px); }
-        }
-        .preloader-content-new {
-            position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center;
-        }
-        
-        /* Animated Tech Core Logo */
-        .preloader-logo-container { margin-bottom: 40px; display: flex; justify-content: center; align-items: center; opacity: 0; animation: fadeIn 1s forwards; }
-        .tech-core { position: relative; width: 100px; height: 100px; display: flex; justify-content: center; align-items: center; }
-        .core-ring { position: absolute; border-radius: 50%; border: 1px solid transparent; }
-        .ring-1 { width: 100%; height: 100%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; animation: spinRing 2s linear infinite; }
-        .ring-2 { width: 80%; height: 80%; border-left: 2px solid rgba(255,255,255,0.5); border-right: 2px solid rgba(255,255,255,0.5); animation: spinReverseRing 3s linear infinite; }
-        .ring-3 { width: 60%; height: 60%; border: 1px dashed rgba(255,255,255,0.3); animation: spinRing 4s linear infinite; }
-        .core-text { 
-            font-size: 24px; font-weight: 900; color: #fff; font-family: 'Inter', sans-serif; letter-spacing: -1px; 
-            text-shadow: 0 0 10px #fff; animation: pulseText 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes spinRing { 100% { transform: rotate(360deg); } }
-        @keyframes spinReverseRing { 100% { transform: rotate(-360deg); } }
-        @keyframes pulseText { 100% { transform: scale(1.1); text-shadow: 0 0 20px #fff; } }
+        /* Geometric Slices */
+        .shard-1 { clip-path: polygon(0 0, 25% 0, 15% 100%, 0 100%); }
+        .shard-2 { clip-path: polygon(25% 0, 50% 0, 40% 100%, 15% 100%); background: #080808; }
+        .shard-3 { clip-path: polygon(50% 0, 75% 0, 65% 100%, 40% 100%); }
+        .shard-4 { clip-path: polygon(75% 0, 100% 0, 100% 100%, 65% 100%); background: #080808; }
 
-        .preloader-name-container {
-            overflow: hidden; margin-bottom: 8px;
+        .preloader.slide-up .shard-1 { transform: translateY(-100vh) translateX(-10vw); }
+        .preloader.slide-up .shard-2 { transform: translateY(100vh) translateX(10vw); }
+        .preloader.slide-up .shard-3 { transform: translateY(-100vh) translateX(10vw); }
+        .preloader.slide-up .shard-4 { transform: translateY(100vh) translateX(-10vw); }
+
+        .preloader-percentage-new {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 8vw; font-weight: 900; color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2); z-index: 10;
+            font-family: 'Inter', sans-serif; pointer-events: none;
+            transition: opacity 0.5s ease;
         }
-        .preloader-name {
-            font-size: 5vw; font-weight: 900; letter-spacing: -2px; text-transform: uppercase;
-            color: #fff; font-family: 'Inter', sans-serif; display: flex; gap: 2px; margin: 0;
+        .preloader-percentage-new::before {
+            content: attr(data-text); position: absolute; top: 0; left: 0; color: #fff;
+            width: var(--progress, 0%); overflow: hidden; white-space: nowrap;
         }
-        @media (max-width: 768px) { .preloader-name { font-size: 8vw; } }
-        .preloader-name .char {
-            display: inline-block; transform: translateY(100%); opacity: 0;
-            animation: slideUpChar 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-        }
-        .preloader-name .char:nth-child(1) { animation-delay: 0.1s; }
-        .preloader-name .char:nth-child(2) { animation-delay: 0.15s; }
-        .preloader-name .char:nth-child(3) { animation-delay: 0.2s; }
-        .preloader-name .char:nth-child(4) { animation-delay: 0.25s; }
-        .preloader-name .char:nth-child(5) { animation-delay: 0.3s; margin-right: 1.5vw; } 
-        .preloader-name .char:nth-child(6) { animation-delay: 0.35s; }
-        .preloader-name .char:nth-child(7) { animation-delay: 0.4s; }
-        .preloader-name .char:nth-child(8) { animation-delay: 0.45s; }
-        .preloader-name .char:nth-child(9) { animation-delay: 0.5s; }
-        .preloader-name .char:nth-child(10) { animation-delay: 0.55s; }
-        .preloader-name .char:nth-child(11) { animation-delay: 0.6s; }
-        .preloader-name .char:nth-child(12) { animation-delay: 0.65s; }
-        .preloader-name .char:nth-child(13) { animation-delay: 0.7s; }
+        .preloader.slide-up .preloader-percentage-new { opacity: 0; }
         
-        .preloader-role-container {
-            overflow: hidden; margin-bottom: 60px;
-        }
-        .preloader-role {
-            font-size: 16px; color: var(--text-secondary); letter-spacing: 4px; text-transform: uppercase;
-            transform: translateY(100%); opacity: 0;
-            animation: slideUpChar 1s cubic-bezier(0.19, 1, 0.22, 1) 0.8s forwards; margin: 0;
-        }
-        
-        .pacman-container {
-            width: 250px; position: relative; margin-bottom: 24px;
-            opacity: 0; animation: fadeIn 0.5s ease 1s forwards;
-            height: 30px;
-        }
-        .pacman-track {
-            position: relative; width: 100%; height: 100%;
-        }
-        .pacman-dots {
-            position: absolute; top: 50%; left: 15px; right: 0; height: 8px;
-            transform: translateY(-50%);
-            background-image: radial-gradient(circle, #fff 3px, transparent 3px);
-            background-size: 20px 8px; background-repeat: repeat-x; z-index: 1;
-            clip-path: inset(0 0 0 0%);
-            transition: clip-path 0.1s linear;
-        }
-        .pacman {
-            width: 0px; height: 0px;
-            border-right: 15px solid transparent;
-            border-top: 15px solid #FFD700;
-            border-left: 15px solid #FFD700;
-            border-bottom: 15px solid #FFD700;
-            border-radius: 15px;
-            position: absolute; top: 50%; left: 0%;
-            transform: translateY(-50%);
-            animation: chomp 0.3s ease-in-out infinite alternate; z-index: 3;
-            transition: left 0.1s linear;
-        }
-        @keyframes chomp {
-            0% { border-right-color: transparent; }
-            100% { border-right-color: #FFD700; }
-        }
-        
-        .preloader-percentage {
-            font-size: 14px; font-family: monospace; color: #fff; font-weight: bold;
-            opacity: 0; animation: fadeIn 0.5s ease 1s forwards;
-        }
-        
-        @keyframes slideUpChar {
-            to { transform: translateY(0); opacity: 1; }
-        }
         @keyframes fadeIn {
             to { opacity: 1; }
-        }
-        
-        .preloader.slide-up {
-            transform: translateY(-100vh);
         }
 
         .nav-links { display: none; gap: 32px; align-items: center; }
@@ -503,30 +409,10 @@
         }
         
         /* Light Mode Overrides for Preloader */
-        [data-theme="light"] .preloader {
-            background: #ffffff;
-        }
-        [data-theme="light"] .preloader-background {
-            background: 
-                radial-gradient(circle at 15% 50%, rgba(0, 112, 243, 0.1), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(0, 255, 249, 0.1), transparent 25%),
-                #ffffff;
-        }
-        [data-theme="light"] .preloader-background::after {
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
-        }
-        [data-theme="light"] .core-text { 
-            color: #111; text-shadow: 0 0 10px rgba(0,0,0,0.1); 
-        }
-        [data-theme="light"] .ring-1 { border-color: #111; }
-        [data-theme="light"] .ring-2 { border-color: rgba(0,0,0,0.3); }
-        [data-theme="light"] .ring-3 { border-color: rgba(0,0,0,0.2); }
-        [data-theme="light"] .preloader-name { color: #111; }
-        [data-theme="light"] .preloader-role { color: var(--accent-color); }
-        [data-theme="light"] .pacman-dots { background-image: radial-gradient(circle, #111 3px, transparent 3px); }
-        [data-theme="light"] .preloader-percentage { color: #111; }
+        [data-theme="light"] .shard { background: #f9fafb; }
+        [data-theme="light"] .shard-2, [data-theme="light"] .shard-4 { background: #f3f4f6; }
+        [data-theme="light"] .preloader-percentage-new { -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2); }
+        [data-theme="light"] .preloader-percentage-new::before { color: #000; }
 
         /* Stats */
         .stats { 
@@ -1047,37 +933,13 @@
     </script>
 </head>
 <body>
-    <!-- Cinematic Preloader -->
+    <!-- Geometric Shards Preloader -->
     <div class="preloader" id="preloader">
-        <div class="preloader-background"></div>
-        <div class="preloader-content-new">
-            <!-- Animated Tech Core Logo -->
-            <div class="preloader-logo-container">
-                <div class="tech-core">
-                    <div class="core-ring ring-1"></div>
-                    <div class="core-ring ring-2"></div>
-                    <div class="core-ring ring-3"></div>
-                    <div class="core-text">AW</div>
-                </div>
-            </div>
-            
-            <div class="preloader-name-container">
-                <h1 class="preloader-name">
-                    <span class="char">A</span><span class="char">n</span><span class="char">g</span><span class="char">g</span><span class="char">a</span>
-                    <span class="char">W</span><span class="char">i</span><span class="char">r</span><span class="char">a</span><span class="char">n</span><span class="char">a</span><span class="char">t</span><span class="char">a</span>
-                </h1>
-            </div>
-            <div class="preloader-role-container">
-                <p class="preloader-role">Web Developer</p>
-            </div>
-            <div class="pacman-container">
-                <div class="pacman-track">
-                    <div class="pacman-dots" id="pacmanDots"></div>
-                    <div class="pacman" id="preloaderPacman"></div>
-                </div>
-            </div>
-            <div class="preloader-percentage" id="preloaderPerc">0%</div>
-        </div>
+        <div class="shard shard-1"></div>
+        <div class="shard shard-2"></div>
+        <div class="shard shard-3"></div>
+        <div class="shard shard-4"></div>
+        <div class="preloader-percentage-new" id="preloaderPerc" data-text="0%">0%</div>
     </div>
 
     <!-- Interactive Grid Background -->
@@ -1513,8 +1375,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Cinematic Preloader Logic
             const preloader = document.getElementById('preloader');
-            const pacmanDots = document.getElementById('pacmanDots');
-            const preloaderPacman = document.getElementById('preloaderPacman');
             const preloaderPerc = document.getElementById('preloaderPerc');
             
             if (preloader) {
@@ -1538,9 +1398,11 @@
                                 }, 1200); // Wait for slide-up transition
                             }, 400); // Hold at 100% for a moment
                         }
-                        if(preloaderPacman) preloaderPacman.style.left = progress + '%';
-                        if(pacmanDots) pacmanDots.style.clipPath = `inset(0 0 0 ${progress}%)`;
-                        if(preloaderPerc) preloaderPerc.innerText = progress + '%';
+                        if(preloaderPerc) {
+                            preloaderPerc.innerText = progress + '%';
+                            preloaderPerc.setAttribute('data-text', progress + '%');
+                            preloaderPerc.style.setProperty('--progress', progress + '%');
+                        }
                     }, 40);
                 }, 1000); // Wait for name to slide up
             }
