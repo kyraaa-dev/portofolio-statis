@@ -1155,79 +1155,112 @@
         </div>
             </section>
 
-    <!-- Interactive Skill Tree Section (RPG Style) -->
-    <section id="skill-tree-section" class="skill-tree-container container reveal delay-1">
-        <div class="section-header reveal">
-            <h2 class="section-title">Skill <span class="highlight">Constellation</span></h2>
-            <p class="section-description">Interactive nodes of my technical capabilities.</p>
+    <div class="marquee-section reveal delay-1">
+        <!-- Row 1: Left to Right -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                                <span class="marquee-item solid" data-skill="react native">REACT NATIVE</span>
+                                <span class="marquee-item " data-skill="typescript">TYPESCRIPT</span>
+                                <span class="marquee-item solid" data-skill="php">PHP</span>
+                                <span class="marquee-item " data-skill="mysql">MYSQL</span>
+                                <span class="marquee-item solid" data-skill="tailwindcss">TAILWINDCSS</span>
+                                <span class="marquee-item " data-skill="interface design">INTERFACE DESIGN</span>
+                                <span class="marquee-item solid" data-skill="laravel">LARAVEL</span>
+                                                <span class="marquee-item solid" data-skill="react native">REACT NATIVE</span>
+                                <span class="marquee-item " data-skill="typescript">TYPESCRIPT</span>
+                                <span class="marquee-item solid" data-skill="php">PHP</span>
+                                <span class="marquee-item " data-skill="mysql">MYSQL</span>
+                                <span class="marquee-item solid" data-skill="tailwindcss">TAILWINDCSS</span>
+                                <span class="marquee-item " data-skill="interface design">INTERFACE DESIGN</span>
+                                <span class="marquee-item solid" data-skill="laravel">LARAVEL</span>
+                            </div>
         </div>
+        <!-- Row 2: Right to Left -->
+        <div class="marquee-container">
+            <div class="marquee-content reverse">
+                                <span class="marquee-item " data-skill="react native">REACT NATIVE</span>
+                                <span class="marquee-item solid" data-skill="typescript">TYPESCRIPT</span>
+                                <span class="marquee-item " data-skill="php">PHP</span>
+                                <span class="marquee-item solid" data-skill="mysql">MYSQL</span>
+                                <span class="marquee-item " data-skill="tailwindcss">TAILWINDCSS</span>
+                                <span class="marquee-item solid" data-skill="interface design">INTERFACE DESIGN</span>
+                                <span class="marquee-item " data-skill="laravel">LARAVEL</span>
+                                                <span class="marquee-item " data-skill="react native">REACT NATIVE</span>
+                                <span class="marquee-item solid" data-skill="typescript">TYPESCRIPT</span>
+                                <span class="marquee-item " data-skill="php">PHP</span>
+                                <span class="marquee-item solid" data-skill="mysql">MYSQL</span>
+                                <span class="marquee-item " data-skill="tailwindcss">TAILWINDCSS</span>
+                                <span class="marquee-item solid" data-skill="interface design">INTERFACE DESIGN</span>
+                                <span class="marquee-item " data-skill="laravel">LARAVEL</span>
+                            </div>
+        </div>
+    </div>
 
-        <div class="skill-tree-canvas" id="skillCanvas">
-            <!-- SVG for connection lines -->
-            <svg class="skill-connections" id="skillConnections" width="100%" height="100%">
-                <!-- Lines will be drawn dynamically via JS or hardcoded -->
-                <line x1="50%" y1="50%" x2="25%" y2="25%" class="skill-line backend-line" />
-                <line x1="50%" y1="50%" x2="75%" y2="25%" class="skill-line frontend-line" />
-                <line x1="50%" y1="50%" x2="50%" y2="80%" class="skill-line tools-line" />
-                
-                <!-- Backend branches -->
-                <line x1="25%" y1="25%" x2="10%" y2="10%" class="skill-line backend-line sub-line" />
-                <line x1="25%" y1="25%" x2="35%" y2="5%" class="skill-line backend-line sub-line" />
-                
-                <!-- Frontend branches -->
-                <line x1="75%" y1="25%" x2="90%" y2="10%" class="skill-line frontend-line sub-line" />
-                <line x1="75%" y1="25%" x2="65%" y2="5%" class="skill-line frontend-line sub-line" />
-                
-                <!-- Tools branches -->
-                <line x1="50%" y1="80%" x2="30%" y2="90%" class="skill-line tools-line sub-line" />
-                <line x1="50%" y1="80%" x2="70%" y2="90%" class="skill-line tools-line sub-line" />
-            </svg>
-
-            <!-- Nodes -->
-            <!-- Core Node -->
-            <div class="skill-node core-node" style="top: 50%; left: 50%;" data-title="Web Developer" data-desc="My core identity. Building robust, modern, and scalable web applications." data-level="Expert">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-            </div>
-
-            <!-- Primary Nodes -->
-            <div class="skill-node primary-node backend-node" style="top: 25%; left: 25%;" data-title="Backend" data-desc="Server-side logic, database management, and API architecture." data-level="Advanced">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-            </div>
-            
-            <div class="skill-node primary-node frontend-node" style="top: 25%; left: 75%;" data-title="Frontend" data-desc="Client-side UI/UX, responsive design, and interactivity." data-level="Advanced">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-            </div>
-
-            <div class="skill-node primary-node tools-node" style="top: 80%; left: 50%;" data-title="Tools & DevOps" data-desc="Version control, deployment, and development environment." data-level="Intermediate">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-            </div>
-
-            <!-- Secondary Nodes (Backend) -->
-            <div class="skill-node secondary-node backend-node" style="top: 10%; left: 10%;" data-title="Laravel" data-desc="PHP Framework for Web Artisans. My primary framework for robust backend apps." data-level="Expert">L</div>
-            <div class="skill-node secondary-node backend-node" style="top: 5%; left: 35%;" data-title="MySQL" data-desc="Relational Database Management System. Data modeling and optimization." data-level="Advanced">DB</div>
-
-            <!-- Secondary Nodes (Frontend) -->
-            <div class="skill-node secondary-node frontend-node" style="top: 10%; left: 90%;" data-title="JavaScript" data-desc="Core web interactivity and modern ES6+ logic." data-level="Advanced">JS</div>
-            <div class="skill-node secondary-node frontend-node" style="top: 5%; left: 65%;" data-title="TailwindCSS" data-desc="Utility-first CSS framework for rapid and beautiful UI." data-level="Expert">TW</div>
-
-            <!-- Secondary Nodes (Tools) -->
-            <div class="skill-node secondary-node tools-node" style="top: 90%; left: 30%;" data-title="Git" data-desc="Version control for source code history and collaboration." data-level="Advanced">Git</div>
-            <div class="skill-node secondary-node tools-node" style="top: 90%; left: 70%;" data-title="Figma" data-desc="UI/UX design tool for prototyping and wireframing." data-level="Intermediate">Fg</div>
+    <!-- Tech Stack Orbit Section -->
+    <section class="orbit-section container reveal delay-2">
+        <div class="section-header reveal">
+            <h2 class="section-title">Tech <span class="highlight">Ecosystem</span></h2>
+            <p class="section-description">Teknologi yang berputar dan mendukung setiap project saya.</p>
         </div>
         
-        <!-- Interactive HUD Panel -->
-        <div class="skill-hud" id="skillHud">
-            <div class="hud-header">
-                <span class="hud-status-dot"></span>
-                <span class="hud-title">NODE_DATA</span>
+        <div class="orbit-container">
+            <!-- Central Core (Cooler) -->
+            <div class="orbit-center" style="box-shadow: 0 0 50px rgba(0, 255, 249, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.4); animation: core-pulse 2s infinite alternate; overflow: visible;">
+                <style>
+                    @keyframes core-pulse {
+                        0% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 255, 249, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.3); }
+                        100% { transform: scale(1.05); box-shadow: 0 0 70px rgba(0, 255, 249, 0.8), inset 0 0 25px rgba(255, 255, 255, 0.5); }
+                    }
+                </style>
+                <!-- Glowing Code Symbol SVG -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
             </div>
-            <div class="hud-body">
-                <h4 id="hudSkillName">Select a node</h4>
-                <div class="hud-level" id="hudSkillLevel">-</div>
-                <p class="hud-desc" id="hudSkillDesc">Hover or click on a node in the constellation to view details.</p>
+            
+            <!-- Ring 1 (Inner) -->
+            <div class="orbit-ring orbit-ring-1">
+                <div class="orbit-item rev" style="top: -22px; left: calc(50% - 22px);">
+                    <!-- Laravel -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF2D20" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                </div>
+                <div class="orbit-item rev" style="top: auto; bottom: -22px; left: calc(50% - 22px);">
+                    <!-- React -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </div>
             </div>
-            <div class="hud-footer">
-                <span class="hud-sys">sys.analyze()</span>
+            
+            <!-- Ring 2 (Middle) -->
+            <div class="orbit-ring orbit-ring-2">
+                <div class="orbit-item rev" style="top: calc(50% - 22px); left: -22px;">
+                    <!-- Database -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4479A1" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </div>
+                <div class="orbit-item rev" style="top: calc(50% - 22px); right: -22px; left: auto;">
+                    <!-- Code -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3178C6" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <div class="orbit-item rev" style="top: 15px; left: 50px;">
+                    <!-- Design/Figma -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F24E1E" stroke-width="2"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
+                </div>
+            </div>
+            
+            <!-- Ring 3 (Outer) -->
+            <div class="orbit-ring orbit-ring-3">
+                <div class="orbit-item rev" style="top: -22px; left: calc(50% - 22px);">
+                    <!-- Tailwind/CSS -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2"><path d="M12 2.69l5.66 4.2c.2.15.34.38.34.64v8.94c0 .26-.14.49-.34.64L12 21.31l-5.66-4.2a.8.8 0 0 1-.34-.64V7.53c0-.26.14-.49.34-.64L12 2.69z"></path></svg>
+                </div>
+                <div class="orbit-item rev" style="top: auto; bottom: 35px; left: 45px;">
+                    <!-- PHP -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#777BB4" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon></svg>
+                </div>
+                <div class="orbit-item rev" style="top: auto; bottom: 35px; right: 45px; left: auto;">
+                    <!-- JS/Terminal -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F7DF1E" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                </div>
             </div>
         </div>
     </section>
@@ -2008,60 +2041,6 @@
                 voiceAudio.addEventListener('ended', resetVoice);
             }
 
-            // 🌳 Skill Tree Logic
-            const skillNodes = document.querySelectorAll('.skill-node');
-            const skillLines = document.querySelectorAll('.skill-line');
-            const hud = document.getElementById('skillHud');
-            const hudName = document.getElementById('hudSkillName');
-            const hudLevel = document.getElementById('hudSkillLevel');
-            const hudDesc = document.getElementById('hudSkillDesc');
-            
-            // Hover logic to light up lines
-            skillNodes.forEach(node => {
-                node.addEventListener('mouseenter', () => {
-                    // Find which category this node belongs to
-                    let category = '';
-                    if (node.classList.contains('backend-node')) category = 'backend-line';
-                    else if (node.classList.contains('frontend-node')) category = 'frontend-line';
-                    else if (node.classList.contains('tools-node')) category = 'tools-line';
-                    
-                    if (category) {
-                        skillLines.forEach(line => {
-                            if (line.classList.contains(category)) {
-                                line.classList.add('active');
-                            }
-                        });
-                    }
-                });
-                
-                node.addEventListener('mouseleave', () => {
-                    skillLines.forEach(line => line.classList.remove('active'));
-                });
-                
-                // Click logic to update HUD
-                node.addEventListener('click', () => {
-                    skillNodes.forEach(n => n.classList.remove('active'));
-                    node.classList.add('active');
-                    
-                    hudName.textContent = node.getAttribute('data-title');
-                    hudLevel.textContent = node.getAttribute('data-level');
-                    hudDesc.textContent = node.getAttribute('data-desc');
-                    
-                    hud.classList.add('visible');
-                    
-                    // Simple animation reset
-                    hud.style.transform = 'translateY(5px)';
-                    setTimeout(() => hud.style.transform = '', 50);
-                });
-            });
-            
-            // Click outside to close HUD
-            document.getElementById('skillCanvas').addEventListener('click', (e) => {
-                if (!e.target.closest('.skill-node')) {
-                    hud.classList.remove('visible');
-                    skillNodes.forEach(n => n.classList.remove('active'));
-                }
-            });
         });
     </script>
     
