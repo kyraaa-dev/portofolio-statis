@@ -476,7 +476,53 @@
         .stat-number span { color: var(--text-secondary); }
         .stat-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* Marquee removed for Skill Tree */
+        /* 3D Giant Marquee */
+        .marquee-section {
+            padding: 80px 0; overflow: hidden; background: var(--bg-base);
+            border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+            position: relative; display: flex; flex-direction: column; gap: 24px;
+            transform: rotate(-5deg) scale(1.1); transform-origin: center; margin: 120px 0;
+            box-shadow: inset 0 20px 50px rgba(0,0,0,0.5), inset 0 -20px 50px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        [data-theme="light"] .marquee-section { box-shadow: inset 0 20px 50px rgba(0,0,0,0.05), inset 0 -20px 50px rgba(0,0,0,0.05); }
+        .marquee-container { 
+            overflow: hidden; white-space: nowrap; display: flex; width: 100vw;
+        }
+        .marquee-content { 
+            display: inline-flex; animation: marquee-left 40s linear infinite; 
+            align-items: center; padding-right: 48px;
+            will-change: transform;
+        }
+        .marquee-content.reverse { animation: marquee-right 40s linear infinite; }
+        
+        .marquee-item {
+            font-size: 3vw; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;
+            margin-right: 48px; line-height: 1; font-family: 'Inter', sans-serif; font-style: italic;
+            color: transparent; -webkit-text-stroke: 1.5px var(--text-secondary); opacity: 0.5;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease, text-shadow 0.3s ease; cursor: default;
+        }
+        @media (max-width: 768px) { .marquee-item { font-size: 5vw; } }
+        .marquee-item.solid {
+            color: var(--text-primary); -webkit-text-stroke: 0px; opacity: 1;
+        }
+        .marquee-item:hover {
+            color: var(--text-primary); -webkit-text-stroke: 0px; opacity: 1;
+            transform: scale(1.1) rotate(2deg); text-shadow: 0 10px 30px var(--accent-glow);
+        }
+        
+        @keyframes marquee-left { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
+        @keyframes marquee-right { 0% { transform: translate3d(-50%, 0, 0); } 100% { transform: translate3d(0, 0, 0); } }
+
+        /* Marquee Brand Hover Colors */
+        .marquee-item { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease, text-shadow 0.3s ease; cursor: default; }
+        .marquee-item[data-skill="laravel"]:hover { color: #FF2D20 !important; text-shadow: 0 0 15px rgba(255,45,32,0.6) !important; }
+        .marquee-item[data-skill="react native"]:hover { color: #61DAFB !important; text-shadow: 0 0 15px rgba(97,218,251,0.6) !important; }
+        .marquee-item[data-skill="typescript"]:hover { color: #3178C6 !important; text-shadow: 0 0 15px rgba(49,120,198,0.6) !important; }
+        .marquee-item[data-skill="mysql"]:hover { color: #4479A1 !important; text-shadow: 0 0 15px rgba(68,121,161,0.6) !important; }
+        .marquee-item[data-skill="php"]:hover { color: #777BB4 !important; text-shadow: 0 0 15px rgba(119,123,180,0.6) !important; }
+        .marquee-item[data-skill="tailwindcss"]:hover { color: #06B6D4 !important; text-shadow: 0 0 15px rgba(6,182,212,0.6) !important; }
+        .marquee-item[data-skill="interface design"]:hover { color: #F24E1E !important; text-shadow: 0 0 15px rgba(242,78,30,0.6) !important; }
 
         /* About Section */
         .about { padding-top: 120px; padding-bottom: 60px; }
@@ -608,71 +654,98 @@
         .replay-hiding .reveal { opacity: 0 !important; transform: translateY(30px) !important; transition: all 0.5s ease !important; }
         .replay-hiding .reveal.active { opacity: 0 !important; transform: translateY(30px) !important; }
         
-        /* 🌳 Skill Tree Section (RPG Style) */
-        .skill-tree-container {
-            padding: 80px 0; overflow: hidden; position: relative;
-            display: flex; flex-direction: column; align-items: center;
+        /* Orbit Ecosystem */
+        .orbit-section {
+            padding: 80px 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .skill-tree-canvas {
-            position: relative; width: 100%; max-width: 800px; height: 500px;
-            margin: 40px auto; background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.05); border-radius: 20px;
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+        .orbit-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
         }
-        
-        /* Connecting Lines */
-        .skill-connections { position: absolute; top: 0; left: 0; pointer-events: none; }
-        .skill-line { stroke: rgba(16, 185, 129, 0.2); stroke-width: 2; stroke-dasharray: 6 4; transition: stroke 0.3s ease, stroke-width 0.3s ease; }
-        .skill-line.active { stroke: var(--accent-color); stroke-width: 3; animation: linePulse 1s linear infinite; }
-        @keyframes linePulse { to { stroke-dashoffset: -10; } }
-
-        /* Nodes */
-        .skill-node {
-            position: absolute; transform: translate(-50%, -50%);
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; background: var(--bg-surface);
-            border: 2px solid rgba(16, 185, 129, 0.4); color: var(--text-primary);
-            cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 700;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .orbit-center {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--bg-base);
+            box-shadow: 0 0 40px rgba(0, 255, 249, 0.4);
             z-index: 10;
         }
-        .skill-node:hover, .skill-node.active {
-            border-color: var(--accent-color); box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
-            transform: translate(-50%, -50%) scale(1.15); color: var(--accent-color);
+        .orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            animation: orbit-spin linear infinite;
         }
+        [data-theme="light"] .orbit-ring {
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+        .orbit-ring-1 { width: 220px; height: 220px; animation-duration: 15s; }
+        .orbit-ring-2 { width: 340px; height: 340px; animation-duration: 25s; animation-direction: reverse; }
+        .orbit-ring-3 { width: 460px; height: 460px; animation-duration: 35s; }
         
-        .core-node { width: 70px; height: 70px; border-width: 3px; font-size: 24px; animation: nodeFloat 3s ease-in-out infinite; }
-        .primary-node { width: 50px; height: 50px; font-size: 18px; }
-        .secondary-node { width: 40px; height: 40px; font-size: 12px; }
+        .orbit-item {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 50%; left: 50%;
+            transform-origin: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .orbit-item.rev {
+            /* Reverse the rotation so text/logo stays upright */
+            animation: orbit-spin-rev linear infinite;
+        }
+        .orbit-ring-1 .orbit-item.rev { animation-duration: 15s; }
+        .orbit-ring-2 .orbit-item.rev { animation-duration: 25s; animation-direction: reverse; }
+        .orbit-ring-3 .orbit-item.rev { animation-duration: 35s; }
 
-        @keyframes nodeFloat {
-            0%, 100% { transform: translate(-50%, -50%); }
-            50% { transform: translate(-50%, -55%); }
+        @keyframes orbit-spin {
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes orbit-spin-rev {
+            100% { transform: rotate(-360deg); }
         }
 
-        /* HUD Panel */
-        .skill-hud {
-            position: absolute; bottom: 20px; right: 20px; width: 250px;
-            background: rgba(13, 13, 13, 0.9); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 16px; backdrop-filter: blur(10px);
-            opacity: 0; pointer-events: none; transform: translateY(10px);
-            transition: all 0.3s ease; z-index: 20;
-        }
-        .skill-hud.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-        
-        .hud-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 8px; }
-        .hud-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-color); box-shadow: 0 0 8px var(--accent-color); animation: blink 1s infinite; }
-        .hud-title { font-size: 10px; color: rgba(255,255,255,0.5); font-family: 'Courier New', monospace; letter-spacing: 1px; }
-        .hud-body h4 { font-size: 16px; margin: 0 0 4px 0; color: var(--accent-color); font-weight: 700; }
-        .hud-level { font-size: 11px; display: inline-block; padding: 2px 6px; background: rgba(16,185,129,0.1); border-radius: 4px; color: var(--text-secondary); margin-bottom: 8px; }
-        .hud-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin: 0; }
-        .hud-footer { margin-top: 12px; font-size: 10px; color: rgba(255,255,255,0.3); font-family: 'Courier New', monospace; text-align: right; }
-
+        /* Responsive Orbit */
         @media (max-width: 768px) {
-            .skill-tree-canvas { height: 400px; transform: scale(0.9); margin: 20px auto; }
-            .skill-hud { bottom: -60px; right: 50%; transform: translateX(50%) translateY(10px); width: 90%; }
-            .skill-hud.visible { transform: translateX(50%) translateY(0); }
+            .orbit-container {
+                transform: scale(0.8);
+                margin: 0 auto;
+            }
+            .orbit-section {
+                padding: 40px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .orbit-container {
+                transform: scale(0.65);
+                margin: -40px auto;
+            }
         }
 
         /* Project Modal */
