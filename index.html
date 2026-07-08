@@ -1095,9 +1095,9 @@
         </div>
         
         <nav class="nav-links">
-            <a href="#" class="nav-link">Home</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#" class="nav-link" data-i18n="nav_home">Beranda</a>
+            <a href="#projects" class="nav-link" data-i18n="nav_projects">Proyek</a>
+            <a href="#contact" class="nav-link" data-i18n="nav_contact">Kontak</a>
         </nav>
 
         <div class="nav-actions">
@@ -1107,7 +1107,7 @@
                     <span style="position: absolute; width: 100%; height: 100%; background-color: #10B981; border-radius: 50%; opacity: 0.7; animation: hire-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;"></span>
                     <span style="position: relative; width: 6px; height: 6px; background-color: #10B981; border-radius: 50%;"></span>
                 </span>
-                <span class="avail-text">Available for work</span>
+                <span class="avail-text" data-i18n="nav_avail">Tersedia untuk proyek</span>
                 <style>
                     @keyframes hire-ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
                     .availability-badge:hover { background: rgba(16, 185, 129, 0.2) !important; transform: scale(1.05); }
@@ -1115,6 +1115,10 @@
                 </style>
             </a>
 
+            <!-- Language Toggle -->
+            <button class="lang-toggle" id="langToggle" aria-label="Toggle Language" style="background: none; border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 8px; padding: 4px 8px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; min-width: 40px; margin-right: 4px;">
+                ID
+            </button>
 
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
                 <!-- Sun Icon (shows in dark mode) -->
@@ -1144,22 +1148,25 @@
             position: relative;
             z-index: 1;
         }
+        [data-i18n], [data-i18n-btn] {
+            transition: opacity 0.15s ease-in-out !important;
+        }
     </style>
     <section class="hero container">
         <div id="particles-js"></div>
         <h1 class="hero-title reveal active delay-1">ANGGA<br>WIRANATA</h1>
-        <div class="hero-badge reveal active delay-1">WEB DEVELOPER</div>
-        <p class="hero-description reveal active delay-2">
+        <div class="hero-badge reveal active delay-1" data-i18n="hero_badge">PENGEMBANG WEB</div>
+        <p class="hero-description reveal active delay-2" data-i18n="hero_desc">
             Membangun aplikasi web yang efisien dan mudah digunakan, dengan fokus pada ekosistem Laravel dan React.
         </p>
         
         <div class="hero-buttons reveal active delay-2" style="display: flex; gap: 16px; margin-bottom: 100px;">
-            <a href="#projects" class="btn btn-primary">
-                View Work
+            <a href="#projects" class="btn btn-primary" data-i18n="hero_btn_work">
+                Lihat Karya
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
             </a>
-            <a href="#contact" class="btn btn-outline">
-                Contact Me
+            <a href="#contact" class="btn btn-outline" data-i18n="hero_btn_contact">
+                Hubungi Saya
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             </a>
         </div>
@@ -1272,8 +1279,8 @@
     <!-- Tech Stack Orbit Section -->
     <section class="orbit-section container reveal delay-2">
         <div class="section-header reveal">
-            <h2 class="section-title">Tech <span class="highlight">Ecosystem</span></h2>
-            <p class="section-description">Teknologi yang berputar dan mendukung setiap project saya.</p>
+            <h2 class="section-title" data-i18n="tech_title">Tech <span class="highlight">Ecosystem</span></h2>
+            <p class="section-description" data-i18n="tech_desc">Teknologi yang berputar dan mendukung setiap project saya.</p>
         </div>
         
         <div class="orbit-container">
@@ -1342,10 +1349,10 @@
     <section id="about" class="about container reveal">
         <div class="about-grid">
             <div class="about-text">
-                <h2>Lebih Dekat Dengan Saya</h2>
-                <p>Saya adalah seorang Web Developer yang bersemangat dalam membangun antarmuka web yang modern, cepat, dan mudah diakses. Fokus saya tidak hanya pada fungsionalitas, namun juga pada estetika visual yang mampu memberikan pengalaman terbaik bagi pengguna.</p>
-                <p>Dengan latar belakang yang kuat di bidang teknik informatika, saya selalu berusaha untuk terus mengikuti perkembangan teknologi terbaru dan mengimplementasikannya dalam setiap proyek yang saya kerjakan.</p>
-                <a href="#contact" class="btn btn-outline" style="margin-top: 16px;">Mari Berkolaborasi</a>
+                <h2 data-i18n="about_title">Lebih Dekat Dengan Saya</h2>
+                <p data-i18n="about_p1">Saya adalah seorang Web Developer yang bersemangat dalam membangun antarmuka web yang modern, cepat, dan mudah diakses. Fokus saya tidak hanya pada fungsionalitas, namun juga pada estetika visual yang mampu memberikan pengalaman terbaik bagi pengguna.</p>
+                <p data-i18n="about_p2">Dengan latar belakang yang kuat di bidang teknik informatika, saya selalu berusaha untuk terus mengikuti perkembangan teknologi terbaru dan mengimplementasikannya dalam setiap proyek yang saya kerjakan.</p>
+                <a href="#contact" class="btn btn-outline" style="margin-top: 16px;" data-i18n="about_btn">Mari Berkolaborasi</a>
             </div>
             <div class="about-visual">
                 <div class="mac-header">
@@ -1379,8 +1386,8 @@
     <!-- Services Section -->
     <section id="services" class="services container reveal">
         <div class="section-header reveal">
-            <h2 class="section-title">What I <span class="highlight">Do</span></h2>
-            <p class="section-description">Layanan & Spesialisasi</p>
+            <h2 class="section-title" data-i18n="services_title">What I <span class="highlight">Do</span></h2>
+            <p class="section-description" data-i18n="services_desc">Layanan & Spesialisasi</p>
         </div>
         
         <div class="services-grid">
@@ -1388,24 +1395,24 @@
                 <div class="service-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                 </div>
-                <h3 class="service-title">Frontend Architecture</h3>
-                <p class="service-desc">Membangun antarmuka web (UI) interaktif dan mulus menggunakan teknologi modern dengan performa tinggi.</p>
+                <h3 class="service-title" data-i18n="srv_frontend_title">Frontend Architecture</h3>
+                <p class="service-desc" data-i18n="srv_frontend_desc">Membangun antarmuka web (UI) interaktif dan mulus menggunakan teknologi modern dengan performa tinggi.</p>
             </div>
             
             <div class="service-card reveal delay-1">
                 <div class="service-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
                 </div>
-                <h3 class="service-title">Responsive Design</h3>
-                <p class="service-desc">Memastikan aplikasi web Anda tampil sempurna dan berfungsi optimal di berbagai perangkat (Mobile, Tablet, Desktop).</p>
+                <h3 class="service-title" data-i18n="srv_responsive_title">Responsive Design</h3>
+                <p class="service-desc" data-i18n="srv_responsive_desc">Memastikan aplikasi web Anda tampil sempurna dan berfungsi optimal di berbagai perangkat (Mobile, Tablet, Desktop).</p>
             </div>
             
             <div class="service-card reveal delay-2">
                 <div class="service-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
                 </div>
-                <h3 class="service-title">Backend Integration</h3>
-                <p class="service-desc">Menghubungkan antarmuka dengan sistem database dan API layanan pihak ketiga untuk fungsionalitas yang terpadu.</p>
+                <h3 class="service-title" data-i18n="srv_backend_title">Backend Integration</h3>
+                <p class="service-desc" data-i18n="srv_backend_desc">Menghubungkan antarmuka dengan sistem database dan API layanan pihak ketiga untuk fungsionalitas yang terpadu.</p>
             </div>
         </div>
     </section>
@@ -1413,8 +1420,8 @@
     <!-- Experience Timeline Section -->
     <section id="experience" class="experience container reveal">
         <div class="section-header reveal">
-            <h2 class="section-title">My <span class="highlight">Journey</span></h2>
-            <p class="section-description">Pengalaman Karir & Pendidikan</p>
+            <h2 class="section-title" data-i18n="exp_title">My <span class="highlight">Journey</span></h2>
+            <p class="section-description" data-i18n="exp_desc">Pengalaman Karir & Pendidikan</p>
         </div>
         
         <div class="timeline">
@@ -1424,10 +1431,10 @@
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="timeline-date">2022 - Sekarang</span>
-                    <h3 class="timeline-title">Freelance Web Developer</h3>
-                    <h4 class="timeline-subtitle">Self-Employed / Freelance</h4>
-                    <p class="timeline-desc">Mengembangkan berbagai aplikasi web modern menggunakan teknologi terkini seperti Laravel dan ekosistem JS.</p>
+                    <span class="timeline-date" data-i18n="exp_1_date">2022 - Sekarang</span>
+                    <h3 class="timeline-title" data-i18n="exp_1_title">Freelance Web Developer</h3>
+                    <h4 class="timeline-subtitle" data-i18n="exp_1_sub">Self-Employed / Freelance</h4>
+                    <p class="timeline-desc" data-i18n="exp_1_desc">Mengembangkan berbagai aplikasi web modern menggunakan teknologi terkini seperti Laravel dan ekosistem JS.</p>
                 </div>
             </div>
             
@@ -1436,9 +1443,9 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <span class="timeline-date">2022</span>
-                    <h3 class="timeline-title">Pengadministrasian Umum</h3>
-                    <h4 class="timeline-subtitle">Dewan Pengurus KORPRI Kab. Banjar</h4>
-                    <p class="timeline-desc">Menangani administrasi umum, pengelolaan data, dan mendukung operasional instansi pemerintahan daerah.</p>
+                    <h3 class="timeline-title" data-i18n="exp_2_title">Pengadministrasian Umum</h3>
+                    <h4 class="timeline-subtitle" data-i18n="exp_2_sub">Dewan Pengurus KORPRI Kab. Banjar</h4>
+                    <p class="timeline-desc" data-i18n="exp_2_desc">Menangani administrasi umum, pengelolaan data, dan mendukung operasional instansi pemerintahan daerah.</p>
                 </div>
             </div>
             
@@ -1447,9 +1454,9 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <span class="timeline-date">2016 - 2020</span>
-                    <h3 class="timeline-title">S1 Teknik Informatika</h3>
-                    <h4 class="timeline-subtitle">Universitas Islam Kalimantan MAB</h4>
-                    <p class="timeline-desc">Lulus program studi Teknik Informatika dengan fokus pada rekayasa perangkat lunak dan sistem informasi.</p>
+                    <h3 class="timeline-title" data-i18n="exp_3_title">S1 Teknik Informatika</h3>
+                    <h4 class="timeline-subtitle" data-i18n="exp_3_sub">Universitas Islam Kalimantan MAB</h4>
+                    <p class="timeline-desc" data-i18n="exp_3_desc">Lulus program studi Teknik Informatika dengan fokus pada rekayasa perangkat lunak dan sistem informasi.</p>
                 </div>
             </div>
         </div>
@@ -1457,15 +1464,15 @@
 
     <section id="projects" class="projects container">
         <div class="section-header reveal">
-            <h2 class="section-title">Selected Projects</h2>
-            <p class="section-description">Engineered solutions for enterprise clients and institutions.</p>
+            <h2 class="section-title" data-i18n="proj_title">Selected Projects</h2>
+            <p class="section-description" data-i18n="proj_desc">Engineered solutions for enterprise clients and institutions.</p>
         </div>
         
         <div class="filters reveal delay-1">
-            <button class="filter-btn active" data-filter="all">All <span class="badge">1</span></button>
-            <button class="filter-btn" data-filter="Unggulan">Featured <span class="badge">0</span></button>
-            <button class="filter-btn" data-filter="Selesai">Completed <span class="badge">0</span></button>
-            <button class="filter-btn" data-filter="Berjalan">In Progress <span class="badge">1</span></button>
+            <button class="filter-btn active" data-filter="all" data-i18n-btn="proj_all">All <span class="badge">1</span></button>
+            <button class="filter-btn" data-filter="Unggulan" data-i18n-btn="proj_feat">Featured <span class="badge">0</span></button>
+            <button class="filter-btn" data-filter="Selesai" data-i18n-btn="proj_comp">Completed <span class="badge">0</span></button>
+            <button class="filter-btn" data-filter="Berjalan" data-i18n-btn="proj_prog">In Progress <span class="badge">1</span></button>
         </div>
 
         <div class="project-grid">
@@ -1497,16 +1504,16 @@
     <section id="contact" class="contact container reveal">
         <div class="contact-card">
             <div class="contact-content">
-                <h2 class="section-title">Let's build something great.</h2>
-                <p class="section-description">Available for freelance work and full-time opportunities. If you have a project that needs some creative engineering, let's talk.</p>
+                <h2 class="section-title" data-i18n="contact_title">Let's build something great.</h2>
+                <p class="section-description" data-i18n="contact_desc">Available for freelance work and full-time opportunities. If you have a project that needs some creative engineering, let's talk.</p>
                 <div class="contact-actions">
-                    <a href="mailto:anggawiranatafti@gmail.com" class="btn btn-primary">
+                    <a href="mailto:anggawiranatafti@gmail.com" class="btn btn-primary" data-i18n="contact_btn">
                         Say Hello
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     </a>
                     <div class="status-badge">
                         <span class="pulse"></span>
-                        Available for work
+                        <span data-i18n="contact_avail">Available for work</span>
                     </div>
                     <div class="social-links">
                         <a href="https://github.com/kyraaa-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
@@ -2184,6 +2191,117 @@
                 "retina_detect": true
             });
         }
+
+        // 🌐 Bilingual Translation Logic (EN/ID)
+        const translations = {
+            "nav_home": { id: "Beranda", en: "Home" },
+            "nav_projects": { id: "Proyek", en: "Projects" },
+            "nav_contact": { id: "Kontak", en: "Contact" },
+            "nav_avail": { id: "Tersedia untuk proyek", en: "Available for work" },
+            
+            "hero_badge": { id: "PENGEMBANG WEB", en: "WEB DEVELOPER" },
+            "hero_desc": { id: "Membangun aplikasi web yang efisien dan tangguh dengan estetika modern.", en: "Building efficient and robust web applications with modern aesthetics." },
+            "hero_btn_work": { id: `Lihat Karya <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>`, en: `View Work <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>` },
+            "hero_btn_contact": { id: `Hubungi Saya <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>`, en: `Contact Me <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>` },
+
+            "tech_title": { id: `Tech <span class="highlight">Ecosystem</span>`, en: `Tech <span class="highlight">Ecosystem</span>` },
+            "tech_desc": { id: "Teknologi yang berputar dan mendukung setiap project saya.", en: "The technologies orbiting and powering my every project." },
+
+            "about_title": { id: "Lebih Dekat Dengan Saya", en: "Get to Know Me Closer" },
+            "about_p1": { id: "Saya adalah seorang Web Developer yang bersemangat dalam membangun antarmuka web yang modern, cepat, dan mudah diakses. Fokus saya tidak hanya pada fungsionalitas, namun juga pada estetika visual yang mampu memberikan pengalaman terbaik bagi pengguna.", en: "I am a passionate Web Developer focused on building modern, fast, and accessible web interfaces. I care deeply about both functionality and visual aesthetics to deliver the best user experience." },
+            "about_p2": { id: "Dengan latar belakang yang kuat di bidang teknik informatika, saya selalu berusaha untuk terus mengikuti perkembangan teknologi terbaru dan mengimplementasikannya dalam setiap proyek yang saya kerjakan.", en: "With a strong background in informatics engineering, I constantly strive to keep up with the latest technological trends and implement them into every project I build." },
+            "about_btn": { id: "Mari Berkolaborasi", en: "Let's Collaborate" },
+
+            "services_title": { id: `What I <span class="highlight">Do</span>`, en: `What I <span class="highlight">Do</span>` },
+            "services_desc": { id: "Layanan & Spesialisasi", en: "Services & Specialities" },
+            
+            "srv_frontend_title": { id: "Frontend Architecture", en: "Frontend Architecture" },
+            "srv_frontend_desc": { id: "Membangun antarmuka web (UI) interaktif dan mulus menggunakan teknologi modern dengan performa tinggi.", en: "Building seamless, interactive web interfaces (UI) using modern technologies for high performance." },
+            "srv_responsive_title": { id: "Responsive Design", en: "Responsive Design" },
+            "srv_responsive_desc": { id: "Memastikan aplikasi web Anda tampil sempurna dan berfungsi optimal di berbagai perangkat (Mobile, Tablet, Desktop).", en: "Ensuring your web application looks perfect and functions optimally across all devices (Mobile, Tablet, Desktop)." },
+            "srv_backend_title": { id: "Backend Integration", en: "Backend Integration" },
+            "srv_backend_desc": { id: "Menghubungkan antarmuka dengan sistem database dan API layanan pihak ketiga untuk fungsionalitas yang terpadu.", en: "Connecting interfaces with database systems and third-party APIs for cohesive functionality." },
+
+            "exp_title": { id: `My <span class="highlight">Journey</span>`, en: `My <span class="highlight">Journey</span>` },
+            "exp_desc": { id: "Pengalaman Karir & Pendidikan", en: "Career & Education Experience" },
+            "exp_1_date": { id: "2022 - Sekarang", en: "2022 - Present" },
+            "exp_1_title": { id: "Freelance Web Developer", en: "Freelance Web Developer" },
+            "exp_1_sub": { id: "Self-Employed / Freelance", en: "Self-Employed / Freelance" },
+            "exp_1_desc": { id: "Mengembangkan berbagai aplikasi web modern menggunakan teknologi terkini seperti Laravel dan ekosistem JS.", en: "Developing various modern web applications using the latest technologies such as Laravel and the JS ecosystem." },
+            
+            "exp_2_title": { id: "Pengadministrasian Umum", en: "General Administration" },
+            "exp_2_sub": { id: "Dewan Pengurus KORPRI Kab. Banjar", en: "KORPRI Board of Banjar Regency" },
+            "exp_2_desc": { id: "Menangani administrasi umum, pengelolaan data, dan mendukung operasional instansi pemerintahan daerah.", en: "Handled general administration, data management, and supported regional government operations." },
+            
+            "exp_3_title": { id: "S1 Teknik Informatika", en: "B.S. in Informatics Engineering" },
+            "exp_3_sub": { id: "Universitas Islam Kalimantan MAB", en: "Islamic University of Kalimantan MAB" },
+            "exp_3_desc": { id: "Lulus program studi Teknik Informatika dengan fokus pada rekayasa perangkat lunak dan sistem informasi.", en: "Graduated in Informatics Engineering with a focus on software engineering and information systems." },
+
+            "proj_title": { id: "Selected Projects", en: "Selected Projects" },
+            "proj_desc": { id: "Engineered solutions for enterprise clients and institutions.", en: "Engineered solutions for enterprise clients and institutions." },
+            "proj_all": { id: "Semua", en: "All" },
+            "proj_feat": { id: "Unggulan", en: "Featured" },
+            "proj_comp": { id: "Selesai", en: "Completed" },
+            "proj_prog": { id: "Berjalan", en: "In Progress" },
+
+            "contact_title": { id: "Mari berkolaborasi bersama.", en: "Let's build something great." },
+            "contact_desc": { id: "Tersedia untuk pekerjaan freelance dan peluang penuh waktu. Jika Anda memiliki proyek yang membutuhkan rekayasa kreatif, mari bicara.", en: "Available for freelance work and full-time opportunities. If you have a project that needs some creative engineering, let's talk." },
+            "contact_btn": { id: `Katakan Halo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:8px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>`, en: `Say Hello <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:8px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>` },
+            "contact_avail": { id: "Tersedia untuk proyek", en: "Available for work" }
+        };
+
+        let currentLang = localStorage.getItem('site_lang') || 'id';
+        const langToggleBtn = document.getElementById('langToggle');
+
+        function updateLanguage(lang) {
+            // Update button UI
+            if (langToggleBtn) {
+                langToggleBtn.textContent = lang === 'en' ? 'EN' : 'ID';
+            }
+
+            // Update standard i18n text
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[key] && translations[key][lang]) {
+                    el.style.opacity = '0';
+                    setTimeout(() => {
+                        el.innerHTML = translations[key][lang];
+                        el.style.opacity = '1';
+                    }, 150);
+                }
+            });
+
+            // Update filter buttons to preserve badge span
+            document.querySelectorAll('[data-i18n-btn]').forEach(el => {
+                const key = el.getAttribute('data-i18n-btn');
+                if (translations[key] && translations[key][lang]) {
+                    const badge = el.querySelector('.badge');
+                    const badgeHtml = badge ? badge.outerHTML : '';
+                    el.innerHTML = translations[key][lang] + " " + badgeHtml;
+                }
+            });
+        }
+
+        if (langToggleBtn) {
+            langToggleBtn.addEventListener('click', () => {
+                currentLang = currentLang === 'en' ? 'id' : 'en';
+                localStorage.setItem('site_lang', currentLang);
+                updateLanguage(currentLang);
+                
+                // Also trigger voice intro language change if it exists
+                const voiceLangBtn = document.querySelector(`.voice-lang-btn[data-lang="${currentLang}"]`);
+                if (voiceLangBtn) voiceLangBtn.click();
+            });
+        }
+
+        // Apply on initial load
+        if(currentLang === 'en') {
+            updateLanguage('en');
+        } else {
+            // If ID, just ensure button shows ID
+            if(langToggleBtn) langToggleBtn.textContent = 'ID';
+        }
+
     </script>
 </body>
 </html>
