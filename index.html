@@ -1010,10 +1010,15 @@
         }
 
         /* Footer */
-        .footer { padding: 32px 0; border-top: 1px solid var(--border-color); margin-top: 40px; transition: border-color 0.5s ease; }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 14px; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; font-weight: 500;}
-        .footer-links a:hover { color: var(--text-primary); }
+        .footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-brand { display: flex; align-items: center; gap: 12px; }
+        .footer-logo { background: var(--accent-color); color: #000; font-weight: 800; font-size: 14px; padding: 4px 8px; border-radius: 4px; font-family: 'Inter', sans-serif; }
+        .footer-text { color: var(--text-secondary); font-size: 14px; font-weight: 500; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
+        .footer-tagline { color: var(--text-secondary); font-size: 14px; font-family: 'Courier New', monospace; }
+        .accent-precision { color: var(--accent-color); font-weight: 600; text-shadow: 0 0 10px rgba(16,185,129,0.4); }
+        .blinking-cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent-color); vertical-align: middle; margin-left: 2px; animation: blink 1s step-end infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 
 
@@ -1523,8 +1528,13 @@
     <!-- Footer -->
     <footer class="footer container reveal">
         <div class="footer-content">
-            <p>&copy; 2026 ANGGA WIRANATA. Crafted with precision.</p>
-
+            <div class="footer-brand">
+                <span class="footer-logo">AW</span>
+                <span class="footer-text">&copy; 2026 ANGGA WIRANATA, S.KOM.</span>
+            </div>
+            <div class="footer-tagline">
+                Crafted with <span class="accent-precision">precision</span> <span class="blinking-cursor">_</span>
+            </div>
         </div>
     </footer>
 
