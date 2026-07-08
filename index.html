@@ -514,6 +514,37 @@
         .heatmap-container:hover { transform: translateY(-5px); }
         .heatmap-container img { max-width: 100%; height: auto; display: block; }
         
+        /* Services Section */
+        .services { padding-top: 120px; padding-bottom: 60px; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
+        .service-card {
+            background: var(--bg-surface); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 40px; position: relative; overflow: hidden;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.5s ease; pointer-events: none; z-index: 0;
+        }
+        .service-card:hover {
+            transform: translateY(-10px); border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .service-card:hover::before { opacity: 0.15; }
+        .service-icon {
+            width: 60px; height: 60px; border-radius: 12px; background: rgba(16, 185, 129, 0.1);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
+            color: var(--accent-color); position: relative; z-index: 1;
+            transition: transform 0.4s ease, background 0.4s ease;
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg); background: var(--accent-color); color: #000;
+        }
+        .service-title { font-size: 24px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary); position: relative; z-index: 1; }
+        .service-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.6; position: relative; z-index: 1; }
+        
         /* Marquee Brand Hover Colors */
         .marquee-content span { transition: color 0.3s ease, text-shadow 0.3s ease; cursor: default; }
         .marquee-content span[data-skill="laravel"]:hover { color: #FF2D20; text-shadow: 0 0 15px rgba(255,45,32,0.6); }
@@ -908,6 +939,7 @@
             .hero-title { font-size: 48px; }
             .stats { grid-template-columns: repeat(2, 1fr); }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .services-grid { grid-template-columns: 1fr; }
             .project-grid { grid-template-columns: 1fr; }
             .contact-card { padding: 32px; flex-direction: column; align-items: flex-start; }
             .footer-content { flex-direction: column; gap: 16px; text-align: center; }
@@ -1215,6 +1247,40 @@
             <h3>GitHub Activity</h3>
             <div class="heatmap-container">
                 <img src="https://ghchart.rshah.org/kyraaa-dev" alt="Angga Wiranata Github Chart" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services container reveal">
+        <div class="section-header reveal">
+            <h2 class="section-title">What I <span class="highlight">Do</span></h2>
+            <p class="section-description">Layanan & Spesialisasi</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <h3 class="service-title">Frontend Architecture</h3>
+                <p class="service-desc">Membangun antarmuka web (UI) interaktif dan mulus menggunakan teknologi modern dengan performa tinggi.</p>
+            </div>
+            
+            <div class="service-card reveal delay-1">
+                <div class="service-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                </div>
+                <h3 class="service-title">Responsive Design</h3>
+                <p class="service-desc">Memastikan aplikasi web Anda tampil sempurna dan berfungsi optimal di berbagai perangkat (Mobile, Tablet, Desktop).</p>
+            </div>
+            
+            <div class="service-card reveal delay-2">
+                <div class="service-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </div>
+                <h3 class="service-title">Backend Integration</h3>
+                <p class="service-desc">Menghubungkan antarmuka dengan sistem database dan API layanan pihak ketiga untuk fungsionalitas yang terpadu.</p>
             </div>
         </div>
     </section>
