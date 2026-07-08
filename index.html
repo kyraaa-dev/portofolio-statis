@@ -1013,7 +1013,8 @@
         .footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
         .footer-content { display: flex; justify-content: space-between; align-items: center; }
         .footer-brand { display: flex; align-items: center; gap: 12px; }
-        .footer-logo { background: var(--accent-color); color: #000; font-weight: 800; font-size: 14px; padding: 4px 8px; border-radius: 4px; font-family: 'Inter', sans-serif; }
+        .footer-logo { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); font-weight: 700; font-size: 14px; padding: 4px 8px; border-radius: 4px; font-family: 'Courier New', monospace; box-shadow: 0 0 10px rgba(16,185,129,0.2); letter-spacing: 2px; }
+        .blinking-cursor-logo { display: inline-block; animation: blink 1s step-end infinite; }
         .footer-text { color: var(--text-secondary); font-size: 14px; font-weight: 500; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
         .footer-tagline { color: var(--text-secondary); font-size: 14px; font-family: 'Courier New', monospace; }
         .accent-precision { color: var(--accent-color); font-weight: 600; text-shadow: 0 0 10px rgba(16,185,129,0.4); }
@@ -1529,7 +1530,7 @@
     <footer class="footer container reveal">
         <div class="footer-content">
             <div class="footer-brand">
-                <span class="footer-logo">AW</span>
+                <span class="footer-logo">&gt;<span class="blinking-cursor-logo">_</span></span>
                 <span class="footer-text">&copy; 2026 ANGGA WIRANATA, S.KOM.</span>
             </div>
             <div class="footer-tagline">
