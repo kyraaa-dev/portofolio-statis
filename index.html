@@ -271,14 +271,37 @@
             animation: slideUpChar 1s cubic-bezier(0.19, 1, 0.22, 1) 0.8s forwards; margin: 0;
         }
         
-        .preloader-progress {
-            width: 200px; height: 2px; background: rgba(255,255,255,0.1); position: relative;
-            overflow: hidden; border-radius: 2px; margin-bottom: 16px;
+        .pacman-container {
+            width: 250px; position: relative; margin-bottom: 24px;
             opacity: 0; animation: fadeIn 0.5s ease 1s forwards;
+            height: 30px;
         }
-        .preloader-progress-bar {
-            position: absolute; top: 0; left: 0; height: 100%; background: #fff; width: 0%;
-            transition: width 0.1s linear;
+        .pacman-track {
+            position: relative; width: 100%; height: 100%;
+        }
+        .pacman-dots {
+            position: absolute; top: 50%; left: 15px; right: 0; height: 8px;
+            transform: translateY(-50%);
+            background-image: radial-gradient(circle, #fff 3px, transparent 3px);
+            background-size: 20px 8px; background-repeat: repeat-x; z-index: 1;
+            clip-path: inset(0 0 0 0%);
+            transition: clip-path 0.1s linear;
+        }
+        .pacman {
+            width: 0px; height: 0px;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #FFD700;
+            border-left: 15px solid #FFD700;
+            border-bottom: 15px solid #FFD700;
+            border-radius: 15px;
+            position: absolute; top: 50%; left: 0%;
+            transform: translateY(-50%);
+            animation: chomp 0.3s ease-in-out infinite alternate; z-index: 3;
+            transition: left 0.1s linear;
+        }
+        @keyframes chomp {
+            0% { border-right-color: transparent; }
+            100% { border-right-color: #FFD700; }
         }
         
         .preloader-percentage {
@@ -502,8 +525,7 @@
         [data-theme="light"] .ring-3 { border-color: rgba(0,0,0,0.2); }
         [data-theme="light"] .preloader-name { color: #111; }
         [data-theme="light"] .preloader-role { color: var(--accent-color); }
-        [data-theme="light"] .preloader-progress { background: rgba(0,0,0,0.1); }
-        [data-theme="light"] .preloader-progress-bar { background: var(--accent-color); }
+        [data-theme="light"] .pacman-dots { background-image: radial-gradient(circle, #111 3px, transparent 3px); }
         [data-theme="light"] .preloader-percentage { color: #111; }
 
         /* Stats */
@@ -1048,8 +1070,11 @@
             <div class="preloader-role-container">
                 <p class="preloader-role">Web Developer</p>
             </div>
-            <div class="preloader-progress">
-                <div class="preloader-progress-bar" id="preloaderBar"></div>
+            <div class="pacman-container">
+                <div class="pacman-track">
+                    <div class="pacman-dots" id="pacmanDots"></div>
+                    <div class="pacman" id="preloaderPacman"></div>
+                </div>
             </div>
             <div class="preloader-percentage" id="preloaderPerc">0%</div>
         </div>
@@ -1488,7 +1513,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Cinematic Preloader Logic
             const preloader = document.getElementById('preloader');
-            const preloaderBar = document.getElementById('preloaderBar');
+            const pacmanDots = document.getElementById('pacmanDots');
+            const preloaderPacman = document.getElementById('preloaderPacman');
             const preloaderPerc = document.getElementById('preloaderPerc');
             
             if (preloader) {
@@ -1512,7 +1538,8 @@
                                 }, 1200); // Wait for slide-up transition
                             }, 400); // Hold at 100% for a moment
                         }
-                        if(preloaderBar) preloaderBar.style.width = progress + '%';
+                        if(preloaderPacman) preloaderPacman.style.left = progress + '%';
+                        if(pacmanDots) pacmanDots.style.clipPath = `inset(0 0 0 ${progress}%)`;
                         if(preloaderPerc) preloaderPerc.innerText = progress + '%';
                     }, 40);
                 }, 1000); // Wait for name to slide up
