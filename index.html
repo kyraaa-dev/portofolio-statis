@@ -191,14 +191,14 @@
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: #050505; z-index: 999999; display: flex; justify-content: center; align-items: center;
             overflow: hidden;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
         }
         #matrixCanvas {
             position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
             display: block; z-index: 1; background: #000;
         }
-        .preloader.slide-up {
-            transform: translateY(-100vh);
+        .preloader.fade-out {
+            opacity: 0; visibility: hidden;
         }
         .preloader::after {
             content: ''; position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -1402,7 +1402,7 @@
                         }
                         drops[i]++;
                     }
-                    if (!preloader.classList.contains('slide-up') || isOverloaded) {
+                    if (!preloader.classList.contains('fade-out') || isOverloaded) {
                         requestAnimationFrame(drawMatrix);
                     }
                 }
@@ -1426,13 +1426,13 @@
                             preloader.classList.add('overload');
                             
                             setTimeout(() => {
-                                preloader.classList.add('slide-up');
+                                preloader.classList.add('fade-out');
                                 setTimeout(() => {
                                     preloader.style.display = 'none';
                                     document.querySelectorAll('.reveal').forEach((el, index) => {
                                         setTimeout(() => { el.classList.add('active'); }, index * 100);
                                     });
-                                }, 1200); // Wait for slide-up transition
+                                }, 1500); // Wait for fade-out transition
                             }, 500); // Flash duration
                         }
                         if(preloaderPerc) {
