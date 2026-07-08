@@ -1052,21 +1052,21 @@
         </div>
     </section>
 
-    <section class="stats container reveal">
+    <section class="stats container reveal" id="stats-section">
                 <div class="stat-item">
-            <h3 class="stat-number">1<span>+</span></h3>
+            <h3 class="stat-number"><span class="counter" data-target="1">0</span><span>+</span></h3>
             <p class="stat-label">TAHUN PENGALAMAN</p>
         </div>
                 <div class="stat-item">
-            <h3 class="stat-number">1<span>+</span></h3>
+            <h3 class="stat-number"><span class="counter" data-target="1">0</span><span>+</span></h3>
             <p class="stat-label">PROJEK DISELESAIKAN</p>
         </div>
                 <div class="stat-item">
-            <h3 class="stat-number">1<span>+</span></h3>
+            <h3 class="stat-number"><span class="counter" data-target="1">0</span><span>+</span></h3>
             <p class="stat-label">KLIEN</p>
         </div>
                 <div class="stat-item">
-            <h3 class="stat-number">95<span>%</span></h3>
+            <h3 class="stat-number"><span class="counter" data-target="95">0</span><span>%</span></h3>
             <p class="stat-label">TINGKAT KEBERHASILAN</p>
         </div>
             </section>
@@ -1710,9 +1710,39 @@
                     btn.style.transform = `translate(0, 0)`;
                 });
             });
+            // Stats Counter Animation
+            const statsSection = document.getElementById('stats-section');
+            const counters = document.querySelectorAll('.counter');
+            let hasCounted = false;
 
-
-
+            if (statsSection && counters.length > 0) {
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !hasCounted) {
+                            hasCounted = true;
+                            counters.forEach(counter => {
+                                const target = +counter.getAttribute('data-target');
+                                const duration = 2000; // 2 seconds
+                                const increment = target / (duration / 16); // 60fps
+                                
+                                let current = 0;
+                                const updateCounter = () => {
+                                    current += increment;
+                                    if (current < target) {
+                                        counter.innerText = Math.ceil(current);
+                                        requestAnimationFrame(updateCounter);
+                                    } else {
+                                        counter.innerText = target;
+                                    }
+                                };
+                                updateCounter();
+                            });
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                counterObserver.observe(statsSection);
+            }
         });
     </script>
     
