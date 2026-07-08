@@ -267,7 +267,16 @@
         }
 
         /* 🎙️ Voice Introduction */
-        .voice-intro { display: flex; justify-content: center; margin-bottom: 48px; margin-top: -24px; }
+        .voice-intro { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 48px; margin-top: -24px; flex-wrap: wrap; }
+        .voice-lang-group { display: flex; gap: 6px; }
+        .voice-lang-btn {
+            padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 600;
+            font-family: 'Inter', sans-serif; cursor: pointer; border: 1px solid var(--border-color);
+            background: var(--bg-surface); color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        .voice-lang-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+        .voice-lang-btn.active { background: var(--accent-color); border-color: var(--accent-color); color: #000; font-weight: 700; }
         .voice-btn {
             display: flex; align-items: center; gap: 14px;
             background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(16, 185, 129, 0.25);
@@ -1158,9 +1167,13 @@
             </a>
         </div>
 
-        <!-- 🎙️ Voice Introduction -->
+        <!-- 🎙️ Voice Introduction (Bilingual) -->
         <div class="voice-intro reveal active delay-2">
-            <audio id="voiceAudio" src="./audio/greeting-en.mp3" preload="none"></audio>
+            <audio id="voiceAudio" preload="none"></audio>
+            <div class="voice-lang-group">
+                <button class="voice-lang-btn active" id="langEn" data-lang="en">🇬🇧 EN</button>
+                <button class="voice-lang-btn" id="langId" data-lang="id">🇮🇩 ID</button>
+            </div>
             <button class="voice-btn" id="voiceBtn">
                 <div class="voice-icon-wrap">
                     <div class="voice-pulse"></div>
@@ -2046,12 +2059,42 @@
             if (replayBtn) replayBtn.addEventListener('click', startReplay);
             if (replaySkip) replaySkip.addEventListener('click', skipReplay);
 
-            // 🎙️ Voice Introduction Logic
+            // 🎙️ Voice Introduction Logic (Bilingual)
             const voiceBtn = document.getElementById('voiceBtn');
             const voiceAudio = document.getElementById('voiceAudio');
             const voiceLabel = document.getElementById('voiceLabel');
             const micIcon = document.getElementById('micIcon');
             const equalizer = document.getElementById('equalizer');
+            const langBtns = document.querySelectorAll('.voice-lang-btn');
+
+            const audioSources = {
+                en: './audio/greeting-en.mp3',
+                id: './audio/greeting-id.mp3'
+            };
+            const labels = { en: 'Hear My Story', id: 'Dengarkan Cerita Saya' };
+            let currentLang = 'en';
+            voiceAudio.src = audioSources[currentLang];
+
+            function resetVoice() {
+                voiceAudio.pause();
+                voiceAudio.currentTime = 0;
+                voiceBtn.classList.remove('playing');
+                voiceLabel.textContent = labels[currentLang];
+                micIcon.style.display = '';
+                equalizer.style.display = 'none';
+            }
+
+            // Language selector
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    resetVoice();
+                    currentLang = btn.getAttribute('data-lang');
+                    voiceAudio.src = audioSources[currentLang];
+                    voiceLabel.textContent = labels[currentLang];
+                    langBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
 
             if (voiceBtn && voiceAudio) {
                 voiceBtn.addEventListener('click', () => {
@@ -2062,21 +2105,11 @@
                         micIcon.style.display = 'none';
                         equalizer.style.display = 'flex';
                     } else {
-                        voiceAudio.pause();
-                        voiceAudio.currentTime = 0;
-                        voiceBtn.classList.remove('playing');
-                        voiceLabel.textContent = 'Hear My Story';
-                        micIcon.style.display = '';
-                        equalizer.style.display = 'none';
+                        resetVoice();
                     }
                 });
 
-                voiceAudio.addEventListener('ended', () => {
-                    voiceBtn.classList.remove('playing');
-                    voiceLabel.textContent = 'Hear My Story';
-                    micIcon.style.display = '';
-                    equalizer.style.display = 'none';
-                });
+                voiceAudio.addEventListener('ended', resetVoice);
             }
         });
     </script>
