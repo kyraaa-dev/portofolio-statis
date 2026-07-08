@@ -266,6 +266,48 @@
             transition: color 0.5s ease;
         }
 
+        /* 🎙️ Voice Introduction */
+        .voice-intro { display: flex; justify-content: center; margin-bottom: 48px; margin-top: -24px; }
+        .voice-btn {
+            display: flex; align-items: center; gap: 14px;
+            background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(16, 185, 129, 0.25);
+            color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+            padding: 12px 22px 12px 12px; border-radius: 100px; cursor: pointer;
+            transition: all 0.3s ease; backdrop-filter: blur(8px); letter-spacing: 0.3px;
+        }
+        .voice-btn:hover { background: rgba(16, 185, 129, 0.15); border-color: var(--accent-color); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(16,185,129,0.2); }
+        .voice-btn.playing { background: rgba(16, 185, 129, 0.2); border-color: var(--accent-color); box-shadow: 0 0 20px rgba(16,185,129,0.3); }
+        .voice-icon-wrap {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--accent-color); display: flex; align-items: center; justify-content: center;
+            position: relative; flex-shrink: 0; color: #000;
+        }
+        .voice-pulse {
+            position: absolute; inset: -4px; border-radius: 50%;
+            border: 2px solid var(--accent-color); opacity: 0.5;
+            animation: voicePulse 2s ease-out infinite;
+        }
+        @keyframes voicePulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        .voice-btn.playing .voice-pulse { animation-duration: 0.8s; }
+        .equalizer { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
+        .eq-bar {
+            width: 3px; border-radius: 2px; background: #000;
+            animation: eqDance 0.6s ease-in-out infinite alternate;
+        }
+        .eq-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
+        .eq-bar:nth-child(2) { animation-delay: 0.1s; height: 14px; }
+        .eq-bar:nth-child(3) { animation-delay: 0.2s; height: 10px; }
+        .eq-bar:nth-child(4) { animation-delay: 0.15s; height: 16px; }
+        .eq-bar:nth-child(5) { animation-delay: 0.05s; height: 7px; }
+        @keyframes eqDance {
+            0% { transform: scaleY(0.3); }
+            100% { transform: scaleY(1.2); }
+        }
+        .voice-label { color: var(--text-primary); transition: color 0.3s ease; }
+
         /* 3D Glass Access Card (Optimized & Premium) */
         .digital-id-perspective {
             perspective: 1000px;
@@ -1116,7 +1158,22 @@
             </a>
         </div>
 
-        <!-- Sleek 3D Digital Access Card -->
+        <!-- 🎙️ Voice Introduction -->
+        <div class="voice-intro reveal active delay-2">
+            <audio id="voiceAudio" src="./audio/greeting-en.mp3" preload="none"></audio>
+            <button class="voice-btn" id="voiceBtn">
+                <div class="voice-icon-wrap">
+                    <div class="voice-pulse"></div>
+                    <svg class="mic-icon" id="micIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    <div class="equalizer" id="equalizer" style="display:none;">
+                        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                    </div>
+                </div>
+                <span class="voice-label" id="voiceLabel">Hear My Story</span>
+            </button>
+        </div>
+
+
         <div class="digital-id-perspective reveal active delay-2">
             <div class="digital-id-card" id="digitalCard">
                 <div class="id-reflection" id="cardReflection"></div>
@@ -1988,6 +2045,39 @@
 
             if (replayBtn) replayBtn.addEventListener('click', startReplay);
             if (replaySkip) replaySkip.addEventListener('click', skipReplay);
+
+            // 🎙️ Voice Introduction Logic
+            const voiceBtn = document.getElementById('voiceBtn');
+            const voiceAudio = document.getElementById('voiceAudio');
+            const voiceLabel = document.getElementById('voiceLabel');
+            const micIcon = document.getElementById('micIcon');
+            const equalizer = document.getElementById('equalizer');
+
+            if (voiceBtn && voiceAudio) {
+                voiceBtn.addEventListener('click', () => {
+                    if (voiceAudio.paused) {
+                        voiceAudio.play();
+                        voiceBtn.classList.add('playing');
+                        voiceLabel.textContent = 'Playing...';
+                        micIcon.style.display = 'none';
+                        equalizer.style.display = 'flex';
+                    } else {
+                        voiceAudio.pause();
+                        voiceAudio.currentTime = 0;
+                        voiceBtn.classList.remove('playing');
+                        voiceLabel.textContent = 'Hear My Story';
+                        micIcon.style.display = '';
+                        equalizer.style.display = 'none';
+                    }
+                });
+
+                voiceAudio.addEventListener('ended', () => {
+                    voiceBtn.classList.remove('playing');
+                    voiceLabel.textContent = 'Hear My Story';
+                    micIcon.style.display = '';
+                    equalizer.style.display = 'none';
+                });
+            }
         });
     </script>
     
