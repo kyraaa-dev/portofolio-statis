@@ -2549,6 +2549,9 @@
                 const termBody = document.getElementById('contactTerminalBody');
                 if (!termBody) return;
                 
+                const isMobile = window.innerWidth <= 1024;
+                const awaitMsg = isMobile ? "Awaiting your message above..." : "Awaiting your message on the left...";
+                
                 const lines = [
                     "Establishing secure connection...",
                     "Handshake successful. [OK]",
@@ -2556,7 +2559,7 @@
                     "Access granted.",
                     "Loading communication protocols...",
                     "System ready.",
-                    "Awaiting your message on the left..."
+                    awaitMsg
                 ];
                 let lineIdx = 0;
                 let started = false;
