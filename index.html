@@ -192,9 +192,37 @@
             background: var(--bg-surface-hover); border-color: var(--text-secondary);
         }
 
-        /* Scroll Progress Bar */
-        .scroll-progress-container { position: fixed; top: 0; left: 0; width: 100vw; height: 3px; z-index: 1001; background: transparent; }
-        .scroll-progress-bar { height: 100%; width: 0%; background: var(--text-primary); box-shadow: 0 0 10px var(--text-primary); transition: width 0.1s ease-out; }
+        /* Scroll Progress Bar - Premium Neon */
+        .scroll-progress-container { 
+            position: fixed; top: 0; left: 0; width: 100vw; height: 3px; 
+            z-index: 9999; background: transparent; 
+        }
+        .scroll-progress-bar { 
+            height: 100%; width: 0%; 
+            background: linear-gradient(90deg, #10b981 0%, #34d399 40%, #6ee7b7 70%, #10b981 100%);
+            background-size: 200% 100%;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.4), 0 0 40px rgba(16, 185, 129, 0.2);
+            transition: width 0.08s linear;
+            border-radius: 0 2px 2px 0;
+            animation: shimmerBar 2s linear infinite;
+            position: relative;
+        }
+        .scroll-progress-bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: #a7f3d0;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #10b981, 0 0 12px #10b981;
+        }
+        @keyframes shimmerBar {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
