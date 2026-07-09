@@ -1668,32 +1668,32 @@
                         <div class="radar-skill-item" data-index="0">
                             <span class="radar-skill-name">Frontend</span>
                             <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="90"></div></div>
-                            <span class="radar-skill-pct">90%</span>
+                            <span class="radar-skill-pct">0%</span>
                         </div>
                         <div class="radar-skill-item" data-index="1">
                             <span class="radar-skill-name">Backend</span>
                             <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="82"></div></div>
-                            <span class="radar-skill-pct">82%</span>
+                            <span class="radar-skill-pct">0%</span>
                         </div>
                         <div class="radar-skill-item" data-index="2">
                             <span class="radar-skill-name">Database</span>
                             <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="75"></div></div>
-                            <span class="radar-skill-pct">75%</span>
+                            <span class="radar-skill-pct">0%</span>
                         </div>
                         <div class="radar-skill-item" data-index="3">
                             <span class="radar-skill-name">UI/UX</span>
                             <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="85"></div></div>
-                            <span class="radar-skill-pct">85%</span>
+                            <span class="radar-skill-pct">0%</span>
                         </div>
                         <div class="radar-skill-item" data-index="4">
                             <span class="radar-skill-name">Mobile</span>
                             <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="65"></div></div>
-                            <span class="radar-skill-pct">65%</span>
+                            <span class="radar-skill-pct">0%</span>
                         </div>
                         <div class="radar-skill-item" data-index="5">
                             <span class="radar-skill-name">DevOps</span>
                             <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="60"></div></div>
-                            <span class="radar-skill-pct">60%</span>
+                            <span class="radar-skill-pct">0%</span>
                         </div>
                     </div>
                 </div>
@@ -2355,6 +2355,21 @@
                     };
                 }
 
+                function animateCounter(el, target, duration) {
+                    let start = 0;
+                    const step = target / (duration / 16);
+                    const tick = () => {
+                        start += step;
+                        if (start < target) {
+                            el.textContent = Math.ceil(start) + '%';
+                            requestAnimationFrame(tick);
+                        } else {
+                            el.textContent = target + '%';
+                        }
+                    };
+                    requestAnimationFrame(tick);
+                }
+
                 function animateRadar() {
                     const points = skills.map(s => calcPoint(s.angle, s.pct));
                     const polyStr = points.map(p => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ');
@@ -2364,9 +2379,17 @@
                         const dot = document.getElementById(`radarDot${i}`);
                         if (dot) { dot.setAttribute('cx', p.x.toFixed(2)); dot.setAttribute('cy', p.y.toFixed(2)); }
                     });
-                    // Animate skill bars
-                    document.querySelectorAll('.radar-skill-fill').forEach(bar => {
-                        bar.style.width = bar.getAttribute('data-pct') + '%';
+                    // Animate skill bars + percentage counters
+                    document.querySelectorAll('.radar-skill-item').forEach((item, i) => {
+                        const fill = item.querySelector('.radar-skill-fill');
+                        const pctEl = item.querySelector('.radar-skill-pct');
+                        const target = parseInt(fill.getAttribute('data-pct'));
+                        // Stagger each bar slightly
+                        const delay = i * 80;
+                        setTimeout(() => {
+                            fill.style.width = target + '%';
+                            if (pctEl) animateCounter(pctEl, target, 1200);
+                        }, delay);
                     });
                 }
 
