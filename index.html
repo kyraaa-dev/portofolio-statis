@@ -1296,12 +1296,13 @@
             .cursor-glow {
                 position: fixed; top: 0; left: 0;
                 width: 800px; height: 800px;
-                background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, rgba(16, 185, 129, 0.01) 30%, transparent 60%);
+                background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 40%, transparent 70%);
                 border-radius: 50%;
                 transform: translate(-50%, -50%);
                 pointer-events: none;
                 z-index: 9998;
                 will-change: transform;
+                mix-blend-mode: screen;
             }
         }
 
