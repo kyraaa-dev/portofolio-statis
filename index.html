@@ -609,6 +609,100 @@
         
         .code-container { padding: 40px; position: relative; z-index: 1; }
 
+        /* ===== RADAR CHART ===== */
+        .radar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+        }
+        .radar-chart-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            flex-shrink: 0;
+        }
+        .radar-chart-container svg {
+            overflow: visible;
+            filter: drop-shadow(0 0 16px rgba(16, 185, 129, 0.2));
+        }
+        /* Polygon data area */
+        .radar-data-polygon {
+            fill: rgba(16, 185, 129, 0.12);
+            stroke: #10b981;
+            stroke-width: 1.5;
+            stroke-linejoin: round;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .radar-grid-polygon {
+            fill: none;
+            stroke: rgba(255,255,255,0.06);
+            stroke-width: 1;
+        }
+        .radar-axis-line {
+            stroke: rgba(255,255,255,0.08);
+            stroke-width: 1;
+        }
+        .radar-dot {
+            fill: #10b981;
+            filter: drop-shadow(0 0 4px #10b981);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .radar-label-group text {
+            font-family: var(--font-family);
+            font-size: 11px;
+            font-weight: 600;
+            fill: var(--text-secondary);
+            text-anchor: middle;
+            dominant-baseline: central;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        /* Skill bars below */
+        .radar-skill-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .radar-skill-item {
+            display: grid;
+            grid-template-columns: 110px 1fr 36px;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 4px 0;
+        }
+        .radar-skill-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+        .radar-skill-item:hover .radar-skill-name { color: #10b981; }
+        .radar-skill-track {
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+        .radar-skill-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            border-radius: 100px;
+            transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+        }
+        .radar-skill-pct {
+            font-size: 12px;
+            font-weight: 700;
+            color: #10b981;
+            text-align: right;
+        }
+
         /* Github Heatmap */
         .github-heatmap { margin-top: 64px; text-align: center; width: 100%; }
         .github-heatmap h3 { font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 24px; }
@@ -1443,25 +1537,84 @@
                 <p data-i18n="about_p2">Dengan latar belakang yang kuat di bidang teknik informatika, saya selalu berusaha untuk terus mengikuti perkembangan teknologi terbaru dan mengimplementasikannya dalam setiap proyek yang saya kerjakan.</p>
                 <a href="#contact" class="btn btn-outline" style="margin-top: 16px;" data-i18n="about_btn">Mari Berkolaborasi</a>
             </div>
-            <div class="about-visual">
-                <div class="mac-header">
-                    <span class="mac-dot red"></span>
-                    <span class="mac-dot yellow"></span>
-                    <span class="mac-dot green"></span>
-                </div>
-                <div class="code-container">
-                    <div class="code-snippet">
-                        <span class="keyword">const</span> <span class="property">developer</span> = {<br>
-                        &nbsp;&nbsp;<span class="property">name</span>: <span class="string">'Angga Wiranata'</span>,<br>
-                        &nbsp;&nbsp;<span class="property">role</span>: <span class="string">'Web Developer'</span>,<br>
-                        &nbsp;&nbsp;<span class="property">passion</span>: [<span class="string">'Design'</span>, <span class="string">'Code'</span>, <span class="string">'Innovation'</span>],<br>
-                        &nbsp;&nbsp;<span class="function">solveProblem</span>: <span class="keyword">function</span>() {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Elegant Solutions"</span>;<br>
-                        &nbsp;&nbsp;}<br>
-                        };
+            <div class="about-visual" style="padding: 32px; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 20px; animation: floatCode 6s ease-in-out infinite;">
+                <div class="radar-wrapper" id="radarWrapper">
+                    <!-- SVG Radar Chart -->
+                    <div class="radar-chart-container">
+                        <svg id="radarSvg" width="280" height="280" viewBox="-140 -140 280 280">
+                            <!-- Grid rings -->
+                            <g class="radar-grid">
+                                <polygon class="radar-grid-polygon" points="0,-100 86.6,-50 86.6,50 0,100 -86.6,50 -86.6,-50"/>
+                                <polygon class="radar-grid-polygon" points="0,-75 64.95,-37.5 64.95,37.5 0,75 -64.95,37.5 -64.95,-37.5"/>
+                                <polygon class="radar-grid-polygon" points="0,-50 43.3,-25 43.3,25 0,50 -43.3,25 -43.3,-25"/>
+                                <polygon class="radar-grid-polygon" points="0,-25 21.65,-12.5 21.65,12.5 0,25 -21.65,12.5 -21.65,-25"/>
+                            </g>
+                            <!-- Axis lines -->
+                            <g class="radar-axes">
+                                <line class="radar-axis-line" x1="0" y1="0" x2="0" y2="-100"/>
+                                <line class="radar-axis-line" x1="0" y1="0" x2="86.6" y2="-50"/>
+                                <line class="radar-axis-line" x1="0" y1="0" x2="86.6" y2="50"/>
+                                <line class="radar-axis-line" x1="0" y1="0" x2="0" y2="100"/>
+                                <line class="radar-axis-line" x1="0" y1="0" x2="-86.6" y2="50"/>
+                                <line class="radar-axis-line" x1="0" y1="0" x2="-86.6" y2="-50"/>
+                            </g>
+                            <!-- Data polygon (animated via JS) -->
+                            <polygon id="radarDataPoly" class="radar-data-polygon" points="0,0 0,0 0,0 0,0 0,0 0,0"/>
+                            <!-- Dots at each vertex -->
+                            <circle id="radarDot0" class="radar-dot" cx="0" cy="0" r="4"/>
+                            <circle id="radarDot1" class="radar-dot" cx="0" cy="0" r="4"/>
+                            <circle id="radarDot2" class="radar-dot" cx="0" cy="0" r="4"/>
+                            <circle id="radarDot3" class="radar-dot" cx="0" cy="0" r="4"/>
+                            <circle id="radarDot4" class="radar-dot" cx="0" cy="0" r="4"/>
+                            <circle id="radarDot5" class="radar-dot" cx="0" cy="0" r="4"/>
+                            <!-- Labels -->
+                            <g class="radar-label-group">
+                                <text x="0" y="-118">Frontend</text>
+                                <text x="104" y="-59">Backend</text>
+                                <text x="104" y="62">Database</text>
+                                <text x="0" y="118">UI/UX</text>
+                                <text x="-104" y="62">Mobile</text>
+                                <text x="-104" y="-59">DevOps</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Skill bars -->
+                    <div class="radar-skill-list">
+                        <div class="radar-skill-item" data-index="0">
+                            <span class="radar-skill-name">Frontend</span>
+                            <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="90"></div></div>
+                            <span class="radar-skill-pct">90%</span>
+                        </div>
+                        <div class="radar-skill-item" data-index="1">
+                            <span class="radar-skill-name">Backend</span>
+                            <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="82"></div></div>
+                            <span class="radar-skill-pct">82%</span>
+                        </div>
+                        <div class="radar-skill-item" data-index="2">
+                            <span class="radar-skill-name">Database</span>
+                            <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="75"></div></div>
+                            <span class="radar-skill-pct">75%</span>
+                        </div>
+                        <div class="radar-skill-item" data-index="3">
+                            <span class="radar-skill-name">UI/UX</span>
+                            <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="85"></div></div>
+                            <span class="radar-skill-pct">85%</span>
+                        </div>
+                        <div class="radar-skill-item" data-index="4">
+                            <span class="radar-skill-name">Mobile</span>
+                            <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="65"></div></div>
+                            <span class="radar-skill-pct">65%</span>
+                        </div>
+                        <div class="radar-skill-item" data-index="5">
+                            <span class="radar-skill-name">DevOps</span>
+                            <div class="radar-skill-track"><div class="radar-skill-fill" data-pct="60"></div></div>
+                            <span class="radar-skill-pct">60%</span>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="github-heatmap reveal delay-2">
@@ -2095,6 +2248,56 @@
                     terminalBody.scrollTop = terminalBody.scrollHeight;
                 }, animDelay);
             }
+
+            // ===== RADAR CHART =====
+            (function initRadarChart() {
+                const skills = [
+                    { pct: 0.90, angle: -90 },   // Frontend (top)
+                    { pct: 0.82, angle: -30 },   // Backend
+                    { pct: 0.75, angle: 30 },    // Database
+                    { pct: 0.85, angle: 90 },    // UI/UX (bottom)
+                    { pct: 0.65, angle: 150 },   // Mobile
+                    { pct: 0.60, angle: 210 },   // DevOps
+                ];
+
+                const RADIUS = 100;
+                const polygon = document.getElementById('radarDataPoly');
+
+                function calcPoint(angleDeg, pct) {
+                    const rad = (angleDeg * Math.PI) / 180;
+                    return {
+                        x: Math.cos(rad) * RADIUS * pct,
+                        y: Math.sin(rad) * RADIUS * pct
+                    };
+                }
+
+                function animateRadar() {
+                    const points = skills.map(s => calcPoint(s.angle, s.pct));
+                    const polyStr = points.map(p => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ');
+                    polygon.setAttribute('points', polyStr);
+                    // Position dots
+                    points.forEach((p, i) => {
+                        const dot = document.getElementById(`radarDot${i}`);
+                        if (dot) { dot.setAttribute('cx', p.x.toFixed(2)); dot.setAttribute('cy', p.y.toFixed(2)); }
+                    });
+                    // Animate skill bars
+                    document.querySelectorAll('.radar-skill-fill').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-pct') + '%';
+                    });
+                }
+
+                // Trigger on scroll into view
+                const wrapper = document.getElementById('radarWrapper');
+                if (wrapper) {
+                    const obs = new IntersectionObserver(entries => {
+                        if (entries[0].isIntersecting) {
+                            setTimeout(animateRadar, 200);
+                            obs.disconnect();
+                        }
+                    }, { threshold: 0.3 });
+                    obs.observe(wrapper);
+                }
+            })();
 
             function runCounters() {
                 hasCounted = false;
