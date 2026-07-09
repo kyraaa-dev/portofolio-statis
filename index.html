@@ -1002,9 +1002,9 @@
         .contact-content { max-width: 800px; width: 100%; position: relative; z-index: 1; }
         
         /* Contact Form Styles */
-        .contact-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; margin-top: 40px; }
-        .telegram-form { display: flex; flex-direction: column; gap: 20px; }
-        .contact-sidebar { display: flex; flex-direction: row; align-items: center; justify-content: flex-end; gap: 24px; align-self: end; padding-bottom: 4px; }
+        .contact-layout { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; max-width: 600px; margin-left: 0; }
+        .telegram-form { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .contact-sidebar { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; width: 100%; flex-wrap: wrap; }
         
         .form-group { width: 100%; position: relative; }
         .form-input {
@@ -1105,9 +1105,8 @@
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .services-grid { grid-template-columns: 1fr; }
             .project-grid { grid-template-columns: 1fr; }
-            .contact-layout { grid-template-columns: 1fr; gap: 40px; }
             .contact-card { padding: 32px; flex-direction: column; align-items: flex-start; }
-            .contact-sidebar { align-items: center; justify-content: flex-end; margin-top: 0; min-width: 100%; flex-direction: row; flex-wrap: wrap; }
+            .contact-sidebar { justify-content: space-between; }
             .footer-content { flex-direction: column; gap: 16px; text-align: center; }
         }
     </style>
