@@ -2113,41 +2113,73 @@
 
                 let progress = 0;
                 
-                // Sci-fi startup sound using Web Audio API
+                // Cinematic Cyberpunk Startup Sound (Web Audio API Synthesizer)
                 function playStartupSound() {
                     try {
                         const AudioContext = window.AudioContext || window.webkitAudioContext;
                         if (!AudioContext) return;
                         const ctx = new AudioContext();
+                        const now = ctx.currentTime;
                         
-                        // Digital power up sweep
-                        const osc1 = ctx.createOscillator();
-                        const gain1 = ctx.createGain();
-                        osc1.type = 'sawtooth';
-                        osc1.frequency.setValueAtTime(40, ctx.currentTime);
-                        osc1.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 1.2);
-                        gain1.gain.setValueAtTime(0, ctx.currentTime);
-                        gain1.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.3);
-                        gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.2);
-                        osc1.connect(gain1);
-                        gain1.connect(ctx.destination);
-                        osc1.start(ctx.currentTime);
-                        osc1.stop(ctx.currentTime + 1.2);
+                        const masterGain = ctx.createGain();
+                        masterGain.gain.value = 0.5;
+                        masterGain.connect(ctx.destination);
                         
-                        // Cyberpunk data chime
-                        const osc2 = ctx.createOscillator();
-                        const gain2 = ctx.createGain();
-                        osc2.type = 'square';
-                        osc2.frequency.setValueAtTime(1200, ctx.currentTime + 0.8);
-                        osc2.frequency.setValueAtTime(2400, ctx.currentTime + 0.9);
-                        osc2.frequency.setValueAtTime(4800, ctx.currentTime + 1.0);
-                        gain2.gain.setValueAtTime(0, ctx.currentTime);
-                        gain2.gain.setValueAtTime(0.1, ctx.currentTime + 0.8);
-                        gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.3);
-                        osc2.connect(gain2);
-                        gain2.connect(ctx.destination);
-                        osc2.start(ctx.currentTime);
-                        osc2.stop(ctx.currentTime + 1.3);
+                        // 1. Deep Sub-Bass Drop (Impact)
+                        const subOsc = ctx.createOscillator();
+                        const subGain = ctx.createGain();
+                        subOsc.type = 'sine';
+                        subOsc.frequency.setValueAtTime(150, now);
+                        subOsc.frequency.exponentialRampToValueAtTime(20, now + 0.8);
+                        subGain.gain.setValueAtTime(0, now);
+                        subGain.gain.linearRampToValueAtTime(1, now + 0.05);
+                        subGain.gain.exponentialRampToValueAtTime(0.01, now + 1.2);
+                        subOsc.connect(subGain);
+                        subGain.connect(masterGain);
+                        subOsc.start(now);
+                        subOsc.stop(now + 1.2);
+                        
+                        // 2. Power Up Swell (Futuristic Synthesizer Chord)
+                        const chord = [261.63, 311.13, 392.00, 466.16]; // C minor 7
+                        chord.forEach((freq, index) => {
+                            const osc = ctx.createOscillator();
+                            const gain = ctx.createGain();
+                            osc.type = 'sawtooth';
+                            osc.frequency.value = freq * 0.5; // octave down
+                            
+                            gain.gain.setValueAtTime(0, now);
+                            gain.gain.linearRampToValueAtTime(0.15, now + 0.5 + (index * 0.1));
+                            gain.gain.exponentialRampToValueAtTime(0.01, now + 2.5);
+                            
+                            const filter = ctx.createBiquadFilter();
+                            filter.type = 'lowpass';
+                            filter.frequency.setValueAtTime(100, now);
+                            filter.frequency.exponentialRampToValueAtTime(4000, now + 1.2);
+                            
+                            osc.connect(filter);
+                            filter.connect(gain);
+                            gain.connect(masterGain);
+                            osc.start(now);
+                            osc.stop(now + 2.5);
+                        });
+                        
+                        // 3. Glitch / Data Stream Processing (Random high-tech beeps)
+                        for(let i = 0; i < 15; i++) {
+                            const beepOsc = ctx.createOscillator();
+                            const beepGain = ctx.createGain();
+                            beepOsc.type = 'square';
+                            beepOsc.frequency.value = 1000 + Math.random() * 4000;
+                            
+                            const startTime = now + 0.1 + (i * 0.05);
+                            beepGain.gain.setValueAtTime(0, startTime);
+                            beepGain.gain.setValueAtTime(0.05, startTime + 0.01);
+                            beepGain.gain.setValueAtTime(0, startTime + 0.04);
+                            
+                            beepOsc.connect(beepGain);
+                            beepGain.connect(masterGain);
+                            beepOsc.start(startTime);
+                            beepOsc.stop(startTime + 0.05);
+                        }
                     } catch(e) {
                         console.log("Audio skipped");
                     }
