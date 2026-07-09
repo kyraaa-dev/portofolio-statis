@@ -2033,7 +2033,7 @@
             </div>
             <div class="project-modal-logo" id="modalLogo"></div>
             <h2 class="project-modal-title" id="modalTitle"></h2>
-            <p class="project-modal-desc" id="modalDesc">This is a comprehensive project built to solve complex business logic. The architecture involves custom backend API integration, seamless frontend user experience, and optimized database queries ensuring fast load times and scalability.</p>
+            <p class="project-modal-desc" id="modalDesc" data-i18n="proj_modal_desc">This is a comprehensive project built to solve complex business logic. The architecture involves custom backend API integration, seamless frontend user experience, and optimized database queries ensuring fast load times and scalability.</p>
             <div id="modalLink" style="margin-top: 24px; display: inline-block; padding: 10px 20px; border-radius: 8px; background: rgba(255, 189, 46, 0.1); color: #ffbd2e; border: 1px solid rgba(255, 189, 46, 0.3); font-weight: 500; font-size: 14px;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px; margin-top: -2px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                 <span data-i18n="proj_dev_status">Tahap Pengembangan (Coming Soon)</span>
@@ -2362,7 +2362,20 @@
                     const logoEl = card.querySelector('.project-logo');
                     const logoHtml = logoEl ? logoEl.innerHTML : '';
                     
-                    document.getElementById('modalTag').innerText = category;
+                    // Map category to translation key
+                    const categoryMap = { "Berjalan": "proj_prog", "Selesai": "proj_comp", "Unggulan": "proj_feat" };
+                    const catKey = categoryMap[category];
+                    const currentLang = localStorage.getItem('site_lang') || 'id';
+                    
+                    const tagEl = document.getElementById('modalTag');
+                    if (catKey) {
+                        tagEl.setAttribute('data-i18n', catKey);
+                        tagEl.innerText = translations[catKey] ? translations[catKey][currentLang] : category;
+                    } else {
+                        tagEl.removeAttribute('data-i18n');
+                        tagEl.innerText = category;
+                    }
+                    
                     document.getElementById('modalLogo').innerHTML = logoHtml;
                     document.getElementById('modalLink').setAttribute('href', link);
                     
@@ -2372,9 +2385,14 @@
                     // Trigger Decrypt Effect
                     if (modalTitleEl) decryptText(modalTitleEl, title, 40);
                     if (modalDescEl) {
-                        // Delay description slightly for better effect
+                        // Get translated description text
+                        const descKey = modalDescEl.getAttribute('data-i18n');
+                        const localizedText = (descKey && translations[descKey] && translations[descKey][currentLang])
+                            ? translations[descKey][currentLang] 
+                            : modalDescText;
+                            
                         modalDescEl.textContent = "";
-                        setTimeout(() => decryptText(modalDescEl, modalDescText, 15), 300);
+                        setTimeout(() => decryptText(modalDescEl, localizedText, 15), 300);
                     }
                 });
             });
@@ -2879,6 +2897,10 @@
             "proj_comp": { id: "Selesai", en: "Completed" },
             "proj_prog": { id: "Berjalan", en: "In Progress" },
             "proj_dev_status": { id: "Tahap Pengembangan (Coming Soon)", en: "Development in Progress" },
+            "proj_modal_desc": { 
+                id: "Ini adalah proyek komprehensif yang dibangun untuk memecahkan logika bisnis yang kompleks. Arsitekturnya melibatkan integrasi API backend kustom, pengalaman pengguna frontend yang mulus, dan optimasi kueri database untuk memastikan waktu muat yang cepat serta skalabilitas tinggi.", 
+                en: "This is a comprehensive project built to solve complex business logic. The architecture involves custom backend API integration, seamless frontend user experience, and optimized database queries ensuring fast load times and scalability." 
+            },
 
             "contact_title": { id: "Mari berkolaborasi bersama.", en: "Let's build something great." },
             "contact_desc": { id: "Tersedia untuk pekerjaan freelance dan peluang penuh waktu. Jika Anda memiliki proyek yang membutuhkan rekayasa kreatif, mari bicara.", en: "Available for freelance work and full-time opportunities. If you have a project that needs some creative engineering, let's talk." },
