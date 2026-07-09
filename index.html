@@ -1004,7 +1004,7 @@
         /* Contact Form Styles */
         .contact-layout { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
         .telegram-form { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 16px; }
-        .contact-sidebar { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 24px; padding-left: 20px; }
+        .contact-sidebar { position: absolute; right: 64px; bottom: 64px; display: flex; flex-direction: column; align-items: flex-end; gap: 24px; }
         .form-group { width: 100%; }
         .form-input {
             width: 100%; padding: 14px 20px; background: rgba(0, 0, 0, 0.2); 
@@ -1097,7 +1097,7 @@
             .services-grid { grid-template-columns: 1fr; }
             .project-grid { grid-template-columns: 1fr; }
             .contact-card { padding: 32px; flex-direction: column; align-items: flex-start; }
-            .contact-sidebar { padding-left: 0; }
+            .contact-sidebar { position: static; align-items: flex-start; padding-left: 0; margin-top: 24px; }
             .footer-content { flex-direction: column; gap: 16px; text-align: center; }
         }
     </style>
