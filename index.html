@@ -2332,7 +2332,7 @@
                 clearInterval(element.decryptInterval);
                 
                 element.decryptInterval = setInterval(() => {
-                    element.innerText = newText.split("").map((letter, index) => {
+                    element.textContent = newText.split("").map((letter, index) => {
                         if(index < iteration) return newText[index];
                         if(newText[index] === " " || newText[index] === "\n") return newText[index];
                         return decryptChars[Math.floor(Math.random() * decryptChars.length)];
@@ -2348,12 +2348,12 @@
             const closeModal = document.getElementById('closeModal');
             const modalTitleEl = document.getElementById('modalTitle');
             const modalDescEl = document.getElementById('modalDesc');
-            const modalDescText = modalDescEl ? modalDescEl.innerText : "";
+            const modalDescText = modalDescEl ? modalDescEl.textContent.trim() : "";
             
             pCards.forEach(card => {
                 card.style.cursor = 'pointer';
                 card.addEventListener('click', () => {
-                    const title = card.querySelector('.project-title').innerText;
+                    const title = card.querySelector('.project-title').textContent.trim();
                     const category = card.getAttribute('data-category');
                     const link = card.querySelector('.project-link').getAttribute('href');
                     const logoHtml = card.querySelector('.project-logo').innerHTML;
@@ -2369,7 +2369,7 @@
                     if (modalTitleEl) decryptText(modalTitleEl, title, 40);
                     if (modalDescEl) {
                         // Delay description slightly for better effect
-                        modalDescEl.innerText = "";
+                        modalDescEl.textContent = "";
                         setTimeout(() => decryptText(modalDescEl, modalDescText, 15), 300);
                     }
                 });
