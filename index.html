@@ -2033,7 +2033,7 @@
             </div>
             <div class="project-modal-logo" id="modalLogo"></div>
             <h2 class="project-modal-title" id="modalTitle"></h2>
-            <p class="project-modal-desc">This is a comprehensive project built to solve complex business logic. The architecture involves custom backend API integration, seamless frontend user experience, and optimized database queries ensuring fast load times and scalability.</p>
+            <p class="project-modal-desc" id="modalDesc">This is a comprehensive project built to solve complex business logic. The architecture involves custom backend API integration, seamless frontend user experience, and optimized database queries ensuring fast load times and scalability.</p>
             <a href="#" class="btn btn-primary" id="modalLink" target="_blank" style="margin-top: 24px;">Visit Project</a>
         </div>
     </div>
@@ -2325,9 +2325,30 @@
                 revealOnScroll.observe(el);
             });
 
+            // Text Decrypt Animation Function
+            const decryptChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+            function decryptText(element, newText, speed = 30) {
+                let iteration = 0;
+                clearInterval(element.decryptInterval);
+                
+                element.decryptInterval = setInterval(() => {
+                    element.innerText = newText.split("").map((letter, index) => {
+                        if(index < iteration) return newText[index];
+                        if(newText[index] === " " || newText[index] === "\n") return newText[index];
+                        return decryptChars[Math.floor(Math.random() * decryptChars.length)];
+                    }).join("");
+                    
+                    if(iteration >= newText.length) clearInterval(element.decryptInterval);
+                    iteration += 1 / 2; // Decrypt speed multiplier
+                }, speed);
+            }
+
             // Project Modals
             const projectModal = document.getElementById('projectModal');
             const closeModal = document.getElementById('closeModal');
+            const modalTitleEl = document.getElementById('modalTitle');
+            const modalDescEl = document.getElementById('modalDesc');
+            const modalDescText = modalDescEl ? modalDescEl.innerText : "";
             
             pCards.forEach(card => {
                 card.style.cursor = 'pointer';
@@ -2337,13 +2358,20 @@
                     const link = card.querySelector('.project-link').getAttribute('href');
                     const logoHtml = card.querySelector('.project-logo').innerHTML;
                     
-                    document.getElementById('modalTitle').innerText = title;
                     document.getElementById('modalTag').innerText = category;
                     document.getElementById('modalLogo').innerHTML = logoHtml;
                     document.getElementById('modalLink').setAttribute('href', link);
                     
                     projectModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
+                    
+                    // Trigger Decrypt Effect
+                    if (modalTitleEl) decryptText(modalTitleEl, title, 40);
+                    if (modalDescEl) {
+                        // Delay description slightly for better effect
+                        modalDescEl.innerText = "";
+                        setTimeout(() => decryptText(modalDescEl, modalDescText, 15), 300);
+                    }
                 });
             });
             
