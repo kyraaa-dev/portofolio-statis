@@ -49,14 +49,14 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kyraaa.pages.dev">
+    <meta property="twitter:url" content="http://localhost:8000">
     <meta property="twitter:title" content="ANGGA WIRANATA | Web Developer">
     <meta property="twitter:description" content="Membangun aplikasi web yang efisien dan mudah digunakan, dengan fokus pada ekosistem Laravel dan React.">
     <meta property="twitter:image" content="https://kyraaa.pages.dev/images/og-image.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./images/logo.png">
-    <link rel="apple-touch-icon" href="./images/logo.png">
+    <link rel="icon" type="image/png" href="http://localhost:8000/images/logo.png">
+    <link rel="apple-touch-icon" href="http://localhost:8000/images/logo.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1005,7 +1005,7 @@
         }
         .project-modal-close:hover { color: var(--text-primary); }
         .project-modal-logo { margin-bottom: 24px; text-align: left; }
-        .project-modal-title { font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; letter-spacing: -0.5px; }
+        .project-modal-title { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; letter-spacing: -0.5px; line-height: 1.4; }
         .project-modal-desc { color: var(--text-secondary); line-height: 1.8; font-size: 16px; margin-bottom: 24px; }
 
 
@@ -1489,7 +1489,7 @@
     <header class="navbar container reveal active">
         <div class="logo">
             <div class="logo-img-wrapper">
-                <img src="./images/logo.png" alt="Logo" class="logo-img">
+                <img src="http://localhost:8000/images/logo.png" alt="Logo" class="logo-img">
             </div>
             <span class="logo-text">ANGGA WIRANATA</span>
         </div>
@@ -1596,7 +1596,7 @@
                 </div>
                 
                 <div class="digital-id-image-wrapper">
-                    <img src="./images/profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop'" alt="ANGGA WIRANATA" class="digital-id-image">
+                    <img src="http://localhost:8000/images/profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop'" alt="ANGGA WIRANATA" class="digital-id-image">
                 </div>
                 
                 <div class="digital-id-info">
@@ -1614,11 +1614,11 @@
 
     <section class="stats container reveal" id="stats-section">
                 <div class="stat-item">
-            <h3 class="stat-number"><span class="counter" data-target="1">0</span><span>+</span></h3>
+            <h3 class="stat-number"><span class="counter" data-target="2">0</span><span>+</span></h3>
             <p class="stat-label">TAHUN PENGALAMAN</p>
         </div>
                 <div class="stat-item">
-            <h3 class="stat-number"><span class="counter" data-target="1">0</span><span>+</span></h3>
+            <h3 class="stat-number"><span class="counter" data-target="2">0</span><span>+</span></h3>
             <p class="stat-label">PROJEK DISELESAIKAN</p>
         </div>
                 <div class="stat-item">
@@ -1928,27 +1928,48 @@
         </div>
         
         <div class="filters reveal delay-1">
-            <button class="filter-btn active" data-filter="all" data-i18n-btn="proj_all">All <span class="badge">1</span></button>
-            <button class="filter-btn" data-filter="Unggulan" data-i18n-btn="proj_feat">Featured <span class="badge">0</span></button>
-            <button class="filter-btn" data-filter="Selesai" data-i18n-btn="proj_comp">Completed <span class="badge">0</span></button>
-            <button class="filter-btn" data-filter="Berjalan" data-i18n-btn="proj_prog">In Progress <span class="badge">1</span></button>
+            <button class="filter-btn active" data-filter="all" data-i18n-btn="proj_all">All <span class="badge">2</span></button>
+            <button class="filter-btn" data-filter="Unggulan" data-i18n-btn="proj_feat">Featured <span class="badge">2</span></button>
+            <button class="filter-btn" data-filter="Selesai" data-i18n-btn="proj_comp">Completed <span class="badge">2</span></button>
+            <button class="filter-btn" data-filter="Berjalan" data-i18n-btn="proj_prog">In Progress <span class="badge">2</span></button>
         </div>
 
         <div class="project-grid">
-                        <div class="project-card reveal delay-0" data-category="Berjalan">
+                        <div class="project-card reveal delay-0" data-category="Berjalan" data-desc="Aplikasi ini dirancang sebagai portal terpadu untuk mendigitalkan dan mempermudah pengurusan berbagai layanan, administrasi, dan kesejahteraan bagi para pegawai (anggota KORPRI).">
                 <style>
                     .project-card:hover .project-img { transform: scale(1.05); }
                     .project-card:hover .project-action-btn { background: var(--text-primary) !important; color: var(--bg-base) !important; }
                 </style>
                 <div class="project-image-wrapper" style="width: calc(100% + 64px); height: 220px; margin: -32px -32px 24px -32px; position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
-                    <img src="./images/project-korpri.png" alt="KORPRI Screenshot" class="project-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
+                                        <img src="http://localhost:8000/images/project-korpri.png" alt="SILUKOR SISTEM INFORMASI LAYANAN USULAN KEANGGOTAAN KORPRI Screenshot" class="project-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
                     <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-surface) 0%, transparent 60%); pointer-events: none;"></div>
                                         <div class="project-tag"  data-i18n="proj_prog"  style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">Berjalan</div>
                 </div>
                 
                 <div class="project-footer" style="padding-top: 0; border-top: none;">
                     <div>
-                        <h3 class="project-title" style="font-size: 22px; font-weight: 700;">Korpri Application System</h3>
+                        <h3 class="project-title" style="font-size: 16px; font-weight: 700; line-height: 1.4;">SILUKOR SISTEM INFORMASI LAYANAN USULAN KEANGGOTAAN KORPRI</h3>
+                        <p style="font-size: 14px; color: var(--accent-color); margin-top: 6px; margin-bottom: 0; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">• Coming Soon</p>
+                    </div>
+                    <a href="#" class="project-link project-action-btn" aria-label="Visit project" style="background: var(--bg-surface-hover); padding: 12px; border-radius: 50%; border: 1px solid var(--border-color); transition: all 0.3s ease;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+                        <div class="project-card reveal delay-1" data-category="Berjalan" data-desc="Aplikasi ini adalah sebuah platform kompetisi berstandar profesional yang dirancang khusus untuk mengelola seluruh siklus ajang Duta KORPRI, mulai dari pendaftaran hingga penetapan juara.">
+                <style>
+                    .project-card:hover .project-img { transform: scale(1.05); }
+                    .project-card:hover .project-action-btn { background: var(--text-primary) !important; color: var(--bg-base) !important; }
+                </style>
+                <div class="project-image-wrapper" style="width: calc(100% + 64px); height: 220px; margin: -32px -32px 24px -32px; position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
+                                        <img src="http://localhost:8000/images/duta-korpri.png" alt="SISDUKOR SISTEM INFORMASI DUTA KORPRI Screenshot" class="project-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-surface) 0%, transparent 60%); pointer-events: none;"></div>
+                                        <div class="project-tag"  data-i18n="proj_prog"  style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">Berjalan</div>
+                </div>
+                
+                <div class="project-footer" style="padding-top: 0; border-top: none;">
+                    <div>
+                        <h3 class="project-title" style="font-size: 16px; font-weight: 700; line-height: 1.4;">SISDUKOR SISTEM INFORMASI DUTA KORPRI</h3>
                         <p style="font-size: 14px; color: var(--accent-color); margin-top: 6px; margin-bottom: 0; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">• Coming Soon</p>
                     </div>
                     <a href="#" class="project-link project-action-btn" aria-label="Visit project" style="background: var(--bg-surface-hover); padding: 12px; border-radius: 50%; border: 1px solid var(--border-color); transition: all 0.3s ease;">
@@ -2486,11 +2507,18 @@
                     // Trigger Decrypt Effect
                     if (modalTitleEl) decryptText(modalTitleEl, title, 40);
                     if (modalDescEl) {
-                        // Get translated description text
-                        const descKey = modalDescEl.getAttribute('data-i18n');
-                        const localizedText = (descKey && translations[descKey] && translations[descKey][currentLang])
-                            ? translations[descKey][currentLang] 
-                            : modalDescText;
+                        const customDesc = card.getAttribute('data-desc');
+                        
+                        // Use custom desc if available, else fallback to generic text
+                        let localizedText = customDesc ? customDesc : modalDescText;
+                        
+                        // If it matches the default English generic text, try getting translation
+                        if (!customDesc) {
+                            const descKey = modalDescEl.getAttribute('data-i18n');
+                            if (descKey && translations[descKey] && translations[descKey][currentLang]) {
+                                localizedText = translations[descKey][currentLang];
+                            }
+                        }
                             
                         modalDescEl.textContent = "";
                         setTimeout(() => decryptText(modalDescEl, localizedText, 15), 300);
