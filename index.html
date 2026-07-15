@@ -2137,6 +2137,71 @@
                     </a>
                 </div>
             </div>
+                        <div class="project-card reveal delay-2" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-category="Unggulan" data-desc="Aplikasi ini dirancang sebagai portal terpadu untuk mendigitalkan dan mempermudah pengurusan berbagai layanan, administrasi, dan kesejahteraan bagi para pegawai (anggota KORPRI).">
+                <style>
+                    @keyframes autoCrossfade {
+                        0%, 45% { opacity: 0; transform: scale(1); }
+                        50%, 95% { opacity: 1; transform: scale(1.05); }
+                        100% { opacity: 0; transform: scale(1); }
+                    }
+                    @keyframes scanline {
+                        0% { top: -10%; }
+                        50% { top: 110%; }
+                        100% { top: -10%; }
+                    }
+                    @keyframes pulseDot { 0% { opacity: 0.3; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.2); } }
+                    
+                    .auto-slideshow { animation: autoCrossfade 8s infinite ease-in-out; }
+                    
+                    /* Holographic Scanline Overlay */
+                    .project-image-wrapper::before {
+                        content: ''; position: absolute; left: 0; right: 0; top: -10%; height: 2px;
+                        background: var(--accent-color);
+                        box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+                        z-index: 10; pointer-events: none; opacity: 0;
+                        transition: opacity 0.3s;
+                    }
+                    
+                    /* Cyberpunk Tech Grid Overlay */
+                    .project-image-wrapper::after {
+                        content: ''; position: absolute; inset: 0;
+                        background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.15) 50%), linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+                        background-size: 100% 4px, 3px 100%;
+                        z-index: 5; pointer-events: none; opacity: 0;
+                        transition: opacity 0.5s;
+                    }
+
+                    @media (hover: hover) and (pointer: fine) {
+                        .project-card:hover .project-img, .project-card:hover .project-img-hover { transform: scale(1.1); }
+                        .project-card:hover .project-action-btn { background: var(--text-primary) !important; color: var(--bg-base) !important; }
+                        .project-card:hover .project-image-wrapper::before { opacity: 1; animation: scanline 3s linear infinite; }
+                        .project-card:hover .project-image-wrapper::after { opacity: 1; }
+                    }
+                </style>
+                <div class="project-image-wrapper" style="width: calc(100% + 64px); margin: -32px -32px 24px -32px; position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
+                                        <img src="/images/kasflow-app.png" alt="KasFlow - Personal Cash Flow Manager Screenshot" class="project-img" style="width: 100%; height: auto; display: block; object-fit: contain; filter: brightness(1.1) contrast(0.95); transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
+                    
+                    
+                    <!-- Right Side Anti-Glare Gradient (Burns highlights on the right) -->
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to left, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 30%, transparent 70%); pointer-events: none; z-index: 4;"></div>
+                                    </div>
+                
+                <div class="project-footer" style="padding-top: 0; border-top: none;">
+                    <div>
+                        <h3 class="project-title" style="font-size: 16px; font-weight: 700; line-height: 1.4;">KasFlow - Personal Cash Flow Manager</h3>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px;">
+                            <div class="project-tag" style="background: rgba(16,185,129,0.1); border: 1px solid var(--accent-color); color: var(--accent-color); border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                                <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-color); box-shadow: 0 0 8px var(--accent-color); animation: pulseDot 1.5s infinite alternate;"></span>
+                                <span  data-i18n="proj_feat" >Unggulan</span>
+                            </div>
+                            <p style="font-size: 12px; color: var(--text-secondary); margin: 0; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">• Coming Soon</p>
+                        </div>
+                    </div>
+                    <a href="https://kyraaa-dev.github.io/kasflow-app/" class="project-link project-action-btn" aria-label="Visit project" style="background: var(--bg-surface-hover); padding: 12px; border-radius: 50%; border: 1px solid var(--border-color); transition: all 0.3s ease;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
                     </div>
     </section>
 
