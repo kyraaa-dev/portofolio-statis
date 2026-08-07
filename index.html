@@ -55,8 +55,8 @@
     <meta property="twitter:image" content="https://kyraaa.pages.dev/images/og-image.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="http://127.0.0.1:8000/images/logo.png">
-    <link rel="apple-touch-icon" href="http://127.0.0.1:8000/images/logo.png">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="apple-touch-icon" href="/images/logo.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1055,12 +1055,6 @@
                 padding: 40px 0;
             }
         }
-        @media (max-width: 480px) {
-            .orbit-container {
-                transform: scale(0.65);
-                margin: -40px auto;
-            }
-        }
 
         /* Project Modal */
         .project-modal-overlay {
@@ -1622,6 +1616,37 @@
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .services-grid { grid-template-columns: 1fr; }
             
+            /* Digital ID Card - Mobile Fix */
+            .digital-id-card {
+                width: 280px;
+                height: auto;
+                min-height: 400px;
+                padding: 24px;
+                margin: 0 auto;
+            }
+            .digital-id-perspective {
+                margin-bottom: 40px;
+            }
+            .digital-id-image-wrapper {
+                width: 120px;
+                height: 150px;
+                border-radius: 16px;
+                margin: 0 auto 24px;
+            }
+            .digital-id-image {
+                border-radius: 12px;
+            }
+            .digital-id-header {
+                margin-bottom: 28px;
+            }
+            .digital-id-name {
+                font-size: 20px;
+            }
+            .digital-id-role {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+
             /* Swipeable Project Cards */
             .project-grid { 
                 display: flex !important; 
@@ -1668,6 +1693,29 @@
             .certificates-grid::-webkit-scrollbar { display: none; }
             .cert-card { flex: 0 0 85% !important; scroll-snap-align: center; }
         }
+        @media (max-width: 480px) {
+            .orbit-container {
+                transform: scale(0.65);
+                margin: -40px auto;
+            }
+            .digital-id-card {
+                width: 260px;
+                min-height: 360px;
+                padding: 20px;
+            }
+            .digital-id-image-wrapper {
+                width: 100px;
+                height: 130px;
+                border-radius: 14px;
+                margin: 0 auto 20px;
+            }
+            .digital-id-image {
+                border-radius: 10px;
+            }
+            .digital-id-name {
+                font-size: 18px;
+            }
+        }
     </style>
 
     <!-- Prevent Theme Flash -->
@@ -1708,7 +1756,7 @@
     <header class="navbar container reveal active">
         <div class="logo">
             <div class="logo-img-wrapper">
-                <img src="http://127.0.0.1:8000/images/logo.png" alt="Logo" class="logo-img">
+                <img src="/images/logo.png" alt="Logo" class="logo-img">
             </div>
             <span class="logo-text">ANGGA WIRANATA</span>
         </div>
@@ -1798,7 +1846,7 @@
                 </div>
                 
                 <div class="digital-id-image-wrapper">
-                    <img src="http://127.0.0.1:8000/images/profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop'" alt="ANGGA WIRANATA" class="digital-id-image">
+                    <img src="/images/profile.jpg" alt="ANGGA WIRANATA" class="digital-id-image">
                 </div>
                 
                 <div class="digital-id-info">
@@ -2178,7 +2226,7 @@
                     }
                 </style>
                 <div class="project-image-wrapper" style="width: calc(100% + 64px); margin: -32px -32px 24px -32px; position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
-                                        <img src="http://127.0.0.1:8000/images/project-korpri.png" alt="SILUKOR SISTEM INFORMASI LAYANAN USULAN KEANGGOTAAN KORPRI Screenshot" class="project-img" style="width: 100%; height: auto; display: block; object-fit: contain; filter: brightness(1.1) contrast(0.95); transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
+                                        <img src="/images/project-korpri.png" alt="SILUKOR SISTEM INFORMASI LAYANAN USULAN KEANGGOTAAN KORPRI Screenshot" class="project-img" style="width: 100%; height: auto; display: block; object-fit: contain; filter: brightness(1.1) contrast(0.95); transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
                     
                     
                     <!-- Right Side Anti-Glare Gradient (Burns highlights on the right) -->
@@ -2243,9 +2291,9 @@
                     }
                 </style>
                 <div class="project-image-wrapper" style="width: calc(100% + 64px); margin: -32px -32px 24px -32px; position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
-                                        <img src="http://127.0.0.1:8000/images/duta-korpri.png" alt="SISDUKOR SISTEM INFORMASI DUTA KORPRI Screenshot" class="project-img" style="width: 100%; height: auto; display: block; object-fit: contain; filter: brightness(1.1) contrast(0.95); transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
+                                        <img src="/images/duta-korpri.png" alt="SISDUKOR SISTEM INFORMASI DUTA KORPRI Screenshot" class="project-img" style="width: 100%; height: auto; display: block; object-fit: contain; filter: brightness(1.1) contrast(0.95); transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
                     
-                                            <img src="http://127.0.0.1:8000/images/duta-korpri-2026.png" alt="SISDUKOR SISTEM INFORMASI DUTA KORPRI Alternate" class="project-img-hover auto-slideshow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; filter: brightness(1.1) contrast(0.95); pointer-events: none; opacity: 0; transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
+                                            <img src="/images/duta-korpri-2026.png" alt="SISDUKOR SISTEM INFORMASI DUTA KORPRI Alternate" class="project-img-hover auto-slideshow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; filter: brightness(1.1) contrast(0.95); pointer-events: none; opacity: 0; transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
                     
                     <!-- Right Side Anti-Glare Gradient (Burns highlights on the right) -->
                     <div style="position: absolute; inset: 0; background: linear-gradient(to left, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 30%, transparent 70%); pointer-events: none; z-index: 4;"></div>
@@ -2309,7 +2357,7 @@
                     }
                 </style>
                 <div class="project-image-wrapper" style="width: calc(100% + 64px); margin: -32px -32px 24px -32px; position: relative; overflow: hidden; border-radius: 16px 16px 0 0;">
-                                        <img src="http://127.0.0.1:8000/images/kasflow-app.png" alt="KasFlow - Personal Cash Flow Manager Screenshot" class="project-img" style="width: 100%; height: auto; display: block; object-fit: contain; filter: brightness(1.1) contrast(0.95); transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
+                                        <img src="/images/kasflow-app.png" alt="KasFlow - Personal Cash Flow Manager Screenshot" class="project-img" style="width: 100%; height: auto; display: block; object-fit: contain; filter: brightness(1.1) contrast(0.95); transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);">
                     
                     
                     <!-- Right Side Anti-Glare Gradient (Burns highlights on the right) -->
